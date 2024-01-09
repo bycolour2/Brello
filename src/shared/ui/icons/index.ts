@@ -1,0 +1,1 @@
+export { GoogleSocialIcon } from "./GoogleSocialIcon";

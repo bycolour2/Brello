@@ -1,8 +1,8 @@
 export const GeometricShapesDesktop = () => {
   return (
     <svg
-      width="768"
-      height="960"
+      // width="768"
+      height="100%"
       viewBox="0 0 768 960"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

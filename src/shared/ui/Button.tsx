@@ -42,6 +42,29 @@ const buttonVariants = cva(
           "border-red-600 bg-red-600 hover:border-red-700 hover:bg-red-700 focus-visible:ring-4 focus-visible:ring-[#FEE4E2] disabled:border-red-200 disabled:bg-red-200",
       },
       {
+        variant: "secondary-gray",
+        destructive: true,
+        className:
+          "border-red-300 bg-white text-red-700 hover:border-red-700 hover:bg-red-50 hover:text-red-800 focus-visible:ring-4 focus-visible:ring-[#FEE4E2] disabled:border-red-200 disabled:text-red-300",
+      },
+      {
+        variant: "secondary-color",
+        destructive: true,
+        className:
+          "border-red-50 bg-red-50 text-red-700 hover:border-red-100 hover:bg-red-100 hover:text-red-800 focus-visible:ring-4 focus-visible:ring-[#FEE4E2] disabled:border-[#FFFBFA] disabled:bg-[#FFFBFA] disabled:text-red-300",
+      },
+      {
+        variant: ["tertiary-gray", "tertiary-color"],
+        destructive: true,
+        className:
+          "text-red-700 hover:bg-red-50 hover:text-red-800 disabled:text-red-300",
+      },
+      {
+        variant: ["link-gray", "link-color"],
+        destructive: true,
+        className: "text-red-700 hover:text-red-800 disabled:text-red-300",
+      },
+      {
         variant: ["link-gray", "link-color"],
         className: "h-5 p-0",
       },
@@ -49,6 +72,7 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: "primary",
       size: "md",
+      destructive: false,
     },
   }
 );

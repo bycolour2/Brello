@@ -62,13 +62,15 @@ export const Page = () => {
                   Get started
                 </Button>
                 <div className="flex flex-col items-center justify-center gap-3 self-stretch">
-                  <button
+                  <Button
                     type="button"
-                    className="flex items-center justify-center gap-3 self-stretch rounded-lg border border-gray-300 px-4 py-2.5 font-semibold text-gray-700 shadow-sm shadow-[rgba(16,24,40,0.05)]"
+                    variant={"secondary-gray"}
+                    size={"lg"}
+                    leadingIcon={<GoogleSocialIcon />}
+                    className="self-stretch"
                   >
-                    <GoogleSocialIcon />
                     Sign up with Google
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -76,9 +78,9 @@ export const Page = () => {
         </div>
         <div className="hidden lg:flex lg:h-24 lg:items-end lg:justify-between lg:self-stretch lg:p-9">
           <p className="text-sm text-gray-600">© Brello 2023</p>
-          <div className="flex items-center gap-2">
-            <MailIcon className="fill-transparent stroke-gray-600" />
-            <p className="text-sm text-gray-600">help@brello.io</p>
+          <div className="flex items-center gap-2 text-gray-600">
+            <MailIcon />
+            <p className="text-sm">help@brello.io</p>
           </div>
         </div>
       </div>

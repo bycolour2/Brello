@@ -10,6 +10,9 @@ export default {
         md: "960px",
         lg: "1440px",
       },
+      boxShadow: {
+        button: "box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);",
+      },
     },
     fontFamily: {
       sans: ["Inter", ..._fontFamily.sans],

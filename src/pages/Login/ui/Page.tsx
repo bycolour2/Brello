@@ -1,4 +1,5 @@
 import {
+  Button,
   GeometricShapesDesktop,
   GeometricShapesMobile,
   GoogleSocialIcon,
@@ -57,12 +58,9 @@ export const Page = () => {
                 />
               </form>
               <div className="flex flex-col items-start gap-4 self-stretch">
-                <button
-                  type="submit"
-                  className="flex items-center justify-center gap-2 self-stretch rounded-lg border border-blue-600 bg-blue-600 px-[18px] py-2.5 font-semibold text-white shadow-sm shadow-[rgba(16,24,40,0.05)]"
-                >
+                <Button type="submit" size={"lg"} className="self-stretch">
                   Get started
-                </button>
+                </Button>
                 <div className="flex flex-col items-center justify-center gap-3 self-stretch">
                   <button
                     type="button"
@@ -79,7 +77,7 @@ export const Page = () => {
         <div className="hidden lg:flex lg:h-24 lg:items-end lg:justify-between lg:self-stretch lg:p-9">
           <p className="text-sm text-gray-600">© Brello 2023</p>
           <div className="flex items-center gap-2">
-            <MailIcon />
+            <MailIcon className="fill-transparent stroke-gray-600" />
             <p className="text-sm text-gray-600">help@brello.io</p>
           </div>
         </div>

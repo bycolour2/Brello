@@ -1,0 +1,20 @@
+<svg width="375" height="63" viewBox="0 0 375 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="62.5" height="62.5" fill="white"/>
+<rect x="31.3109" y="31.25" width="31.25" height="31.25" fill="#2970FF"/>
+<rect width="31.25" height="31.25" fill="#B2DDFF"/>
+<rect width="62.5" height="62.5" transform="translate(62.5)" fill="#B2DDFF"/>
+<path d="M125 0V62.5H62.5L125 0Z" fill="#004EEB"/>
+<circle cx="93.6891" cy="31.25" r="15.625" fill="white"/>
+<rect width="62.5" height="62.5" transform="translate(125)" fill="white"/>
+<path d="M156.311 31.25H187.561L156.311 62.5V31.25Z" fill="#2970FF"/>
+<path d="M156.25 0V31.25H125L156.25 0Z" fill="#2970FF"/>
+<rect width="62.5" height="62.5" transform="translate(187.5)" fill="white"/>
+<path d="M250 62.5C232.741 62.5 218.75 48.5089 218.75 31.25C218.75 13.9911 232.741 0 250 0V62.5Z" fill="#004EEB"/>
+<circle cx="203.125" cy="31.25" r="15.625" fill="#84ADFF"/>
+<rect width="62.5" height="62.5" transform="translate(250)" fill="#B2DDFF"/>
+<path d="M281.25 31.25L281.25 0L312.5 31.25L281.25 31.25Z" fill="white"/>
+<path d="M250 31.25L281.25 31.25L281.25 62.5L250 31.25Z" fill="#2970FF"/>
+<rect width="62.5" height="62.5" transform="translate(312.5)" fill="#84ADFF"/>
+<path d="M312.5 62.5C329.759 62.5 343.75 48.5089 343.75 31.25C343.75 13.9911 329.759 0 312.5 0V62.5Z" fill="#004EEB"/>
+<path d="M375 -1.36598e-06L375 62.5L343.75 31.25L375 -1.36598e-06Z" fill="white"/>
+</svg>

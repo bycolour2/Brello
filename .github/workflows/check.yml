@@ -1,6 +1,6 @@
 name: Checking Checking
 on:
-  pull_reques:
+  pull_request:
   push:
     branches:
       - main

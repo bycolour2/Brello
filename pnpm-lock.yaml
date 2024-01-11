@@ -5,12 +5,24 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@effector/reflect':
+    specifier: 8.4.0
+    version: 8.4.0(effector-react@22.5.4)(effector@22.8.8)(react@18.2.0)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
   clsx:
     specifier: ^2.1.0
     version: 2.1.0
+  effector:
+    specifier: ^22.8.8
+    version: 22.8.8
+  effector-react:
+    specifier: ^22.5.4
+    version: 22.5.4(effector@22.8.8)(react@18.2.0)
+  patronum:
+    specifier: ^1.18.0
+    version: 1.18.0(effector@22.8.8)
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -330,6 +342,18 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
     dev: true
+
+  /@effector/reflect@8.4.0(effector-react@22.5.4)(effector@22.8.8)(react@18.2.0):
+    resolution: {integrity: sha512-MgzE9tum97JgO6ITq2Wcd42nYaInqpsrX7inRmY25Rp53YYu9ChBUMTCM/NHvc7qhFRC0PzsSCi0fkdRsjlz0g==}
+    peerDependencies:
+      effector: ^22.0.0 || ^23.0.0
+      effector-react: ^22.1.0 || ^23.0.0
+      react: '>=16.8.0 <19.0.0'
+    dependencies:
+      effector: 22.8.8
+      effector-react: 22.5.4(effector@22.8.8)(react@18.2.0)
+      react: 18.2.0
+    dev: false
 
   /@esbuild/aix-ppc64@0.19.11:
     resolution: {integrity: sha512-FnzU0LyE3ySQk7UntJO4+qIiQgI7KoODnZg5xzXIrFJlKd2P2gwHsHY4927xj9y5PJmJSzULiUCWmv7iWnNa7g==}
@@ -1455,6 +1479,23 @@ packages:
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
+
+  /effector-react@22.5.4(effector@22.8.8)(react@18.2.0):
+    resolution: {integrity: sha512-7HmtfD/vqmqvGnu6jMojmns9cxIW45JPBkGgHrwvbXGpbm0bz2fmVj6PIttv+Bamfmrf9FAy2bZhs+Rwj+3Mxw==}
+    engines: {node: '>=11.0.0'}
+    peerDependencies:
+      effector: ^22.0.2
+      react: '>=16.8.0 <19.0.0'
+    dependencies:
+      effector: 22.8.8
+      react: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /effector@22.8.8:
+    resolution: {integrity: sha512-uqYEPt/jIZ3Y1WhpyED1XuXAJNsVM5TcWZvcyQhl6nYKRynklGiu+Fy/BnLQftmMcxZS478laAuExUPfuOGiOg==}
+    engines: {node: '>=11.0.0'}
+    dev: false
 
   /electron-to-chromium@1.4.623:
     resolution: {integrity: sha512-lKoz10iCYlP1WtRYdh5MvocQPWVRoI7ysp6qf18bmeBgR8abE6+I2CsfyNKztRDZvhdWc+krKT6wS7Neg8sw3A==}
@@ -2750,6 +2791,14 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /patronum@1.18.0(effector@22.8.8):
+    resolution: {integrity: sha512-2SxZTLHXw56dXvns41YksVD030shnewef+4Gak2RSYdgEBGdCKCYYNfegsvoW8MWwjQxUZpp1Mgos8a3pXipCQ==}
+    peerDependencies:
+      effector: ^22.1.2
+    dependencies:
+      effector: 22.8.8
+    dev: false
+
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: true
@@ -3491,6 +3540,14 @@ packages:
     dependencies:
       punycode: 2.3.1
     dev: true
+
+  /use-sync-external-store@1.2.0(react@18.2.0):
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}

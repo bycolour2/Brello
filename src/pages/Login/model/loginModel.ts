@@ -1,6 +1,7 @@
 import { createStore, createEvent } from "effector";
 
 export const emailChanged = createEvent<string>();
+export const formSubmited = createEvent();
 
 export const $email = createStore("");
 

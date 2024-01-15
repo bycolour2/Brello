@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "~/shared/lib/cn";
 
 const inputVariants = cva(
-  "flex flex-row items-center gap-2 self-stretch rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-gray-900 has-[:disabled]:bg-gray-50 has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-[#F4EBFF]",
+  "flex-[1_0_0] self-stretch rounded-lg border border-gray-300 bg-white text-gray-900 outline-none focus-visible:ring-4 focus-visible:ring-[#F4EBFF] disabled:bg-gray-50 disabled:bg-transparent disabled:text-gray-500",
   {
     variants: {
       destructive: {
@@ -12,12 +12,12 @@ const inputVariants = cva(
         false: "",
       },
       size: {
-        sm: "h-10 px-3 py-2 text-sm",
-        md: "h-[44px] px-3.5 py-2.5 text-base",
+        sm: "min-h-[42px] px-3 py-2 text-base",
+        md: "min-h-[46px] px-3.5 py-2.5 text-base",
       },
     },
     defaultVariants: {
-      size: "md",
+      size: "sm",
       destructive: false,
     },
   }
@@ -34,7 +34,7 @@ interface InputProps<T extends string>
   onValue: ({ value, name }: { value: string; name: T }) => void;
   hint?: string;
   hasError?: boolean;
-  error?: string;
+  error?: string | null;
 }
 
 export const Input = <T extends string>({
@@ -63,23 +63,19 @@ export const Input = <T extends string>({
       )}
     >
       <span className="text-sm font-medium text-gray-700">{label}</span>
-      <div
+      <input
+        name={name}
+        type={type}
+        value={value}
+        onChange={handleChange}
         className={cn(
           inputVariants({
             size,
             destructive: hasError,
           })
         )}
-      >
-        <input
-          name={name}
-          type={type}
-          value={value}
-          onChange={handleChange}
-          className="flex-[1_0_0] text-gray-900 outline-none disabled:bg-transparent disabled:text-gray-500"
-          {...rest}
-        />
-      </div>
+        {...rest}
+      />
       {hasError ? (
         <span className="self-stretch text-sm text-red-500">{error}</span>
       ) : (
@@ -90,23 +86,19 @@ export const Input = <T extends string>({
     </label>
   ) : (
     <div className="flex flex-col items-start gap-1.5 self-stretch">
-      <div
+      <input
+        name={name}
+        type={type}
+        value={value}
+        onChange={handleChange}
         className={cn(
           inputVariants({
             size,
             destructive: hasError,
           })
         )}
-      >
-        <input
-          name={name}
-          type={type}
-          value={value}
-          onChange={handleChange}
-          className="flex-[1_0_0] text-gray-900 outline-none disabled:bg-transparent disabled:text-gray-500"
-          {...rest}
-        />
-      </div>
+        {...rest}
+      />
       {hasError ? (
         <span className="self-stretch text-sm text-red-500">{error}</span>
       ) : (

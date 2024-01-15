@@ -96,14 +96,13 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      type="submit"
+      type="button"
       className={cn(buttonVariants({ variant, destructive, size, className }))}
-      // className="flex items-center justify-center gap-2 self-stretch rounded-lg border border-blue-600 bg-blue-600 px-[18px] py-2.5 font-semibold text-white shadow-sm shadow-[rgba(16,24,40,0.05)]"
       {...props}
     >
-      {leadingIcon}
-      {children}
-      {trailingIcon}
+      {leadingIcon && <div className="h-5 w-5">{leadingIcon}</div>}
+      <span>{children}</span>
+      {trailingIcon && <div className="h-5 w-5">{trailingIcon}</div>}
     </button>
   );
 };

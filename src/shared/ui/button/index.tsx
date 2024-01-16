@@ -1,5 +1,6 @@
+import { ButtonHTMLAttributes, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { ReactNode } from "react";
+
 import { cn } from "~/shared/lib/cn";
 
 const buttonVariants = cva(
@@ -78,7 +79,7 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   leadingIcon?: ReactNode;
   trailingIcon?: ReactNode;
@@ -92,11 +93,14 @@ export const Button = ({
   children,
   leadingIcon,
   trailingIcon,
+  disabled,
   ...props
 }: ButtonProps) => {
   return (
     <button
       type="button"
+      disabled={disabled}
+      aria-disabled={disabled}
       className={cn(buttonVariants({ variant, destructive, size, className }))}
       {...props}
     >

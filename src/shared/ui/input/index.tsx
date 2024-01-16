@@ -1,4 +1,4 @@
-import { ChangeEvent, InputHTMLAttributes } from "react";
+import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "~/shared/lib/cn";
@@ -33,8 +33,7 @@ interface InputProps<T extends string>
   value: string;
   onValue: ({ value, name }: { value: string; name: T }) => void;
   hint?: string;
-  hasError?: boolean;
-  error?: string | null;
+  error?: ReactNode | null;
 }
 
 export const Input = <T extends string>({
@@ -46,14 +45,16 @@ export const Input = <T extends string>({
   value,
   onValue,
   hint,
-  hasError = false,
   error,
+  disabled,
   ...rest
 }: InputProps<T>) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.currentTarget;
     onValue({ value, name: name as T });
   };
+
+  const hasError = Boolean(error);
 
   return label ? (
     <label
@@ -67,6 +68,8 @@ export const Input = <T extends string>({
         name={name}
         type={type}
         value={value}
+        disabled={disabled}
+        aria-disabled={disabled}
         onChange={handleChange}
         className={cn(
           inputVariants({

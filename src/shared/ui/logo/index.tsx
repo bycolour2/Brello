@@ -1,4 +1,4 @@
-import { Logotype } from "~/shared/ui";
+import { Logotype } from "~/shared/assets/images";
 
 export const Logo = () => {
   return (

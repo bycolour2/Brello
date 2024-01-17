@@ -1,5 +1,5 @@
-export { Input } from "./Input";
-export { Button } from "./Button";
-export { Logo } from "./Logo";
-export * from "./icons";
-export * from "./svgs";
+export { Button } from "./button";
+export { Input } from "./input";
+export { Logo } from "./logo";
+export { Spinner } from "./spinner";
+export { FeaturedIcon } from "./featured-icon";

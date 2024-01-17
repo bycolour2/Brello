@@ -1,6 +1,7 @@
+import { ButtonHTMLAttributes, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { ReactNode } from "react";
-import { cn } from "~/shared/lib";
+
+import { cn } from "~/shared/lib/cn";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-blue-600 fill-transparent font-semibold outline-none transition-colors disabled:pointer-events-none",
@@ -78,7 +79,7 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   leadingIcon?: ReactNode;
   trailingIcon?: ReactNode;
@@ -92,18 +93,20 @@ export const Button = ({
   children,
   leadingIcon,
   trailingIcon,
+  disabled,
   ...props
 }: ButtonProps) => {
   return (
     <button
-      type="submit"
+      type="button"
+      disabled={disabled}
+      aria-disabled={disabled}
       className={cn(buttonVariants({ variant, destructive, size, className }))}
-      // className="flex items-center justify-center gap-2 self-stretch rounded-lg border border-blue-600 bg-blue-600 px-[18px] py-2.5 font-semibold text-white shadow-sm shadow-[rgba(16,24,40,0.05)]"
       {...props}
     >
-      {leadingIcon}
-      {children}
-      {trailingIcon}
+      {leadingIcon && <div className="h-5 w-5">{leadingIcon}</div>}
+      <span>{children}</span>
+      {trailingIcon && <div className="h-5 w-5">{trailingIcon}</div>}
     </button>
   );
 };

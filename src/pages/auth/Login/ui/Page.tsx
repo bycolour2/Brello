@@ -20,8 +20,7 @@ import { Button, FeaturedIcon, Input, Logo, Spinner } from "~/shared/ui";
 import { ReactNode } from "react";
 
 export const Page = () => {
-  const [sended, authError] = useUnit([$formSended, $formError]);
-  console.log(authError);
+  const [sended] = useUnit([$formSended]);
 
   return (
     <main className="relative flex h-screen flex-col items-center gap-8 pb-12 lg:h-screen lg:w-screen lg:flex-row lg:justify-between lg:gap-0 lg:p-0">
@@ -141,7 +140,7 @@ const LoginResult = () => {
 
         <div className="flex flex-col items-start gap-2 self-stretch">
           <h1 className="text-2xl font-semibold text-gray-900">
-            {authError ? "Error" : "Check your email"}
+            {authError ? "Auth error" : "Check your email"}
           </h1>
           <p className="text-base font-normal text-gray-600">
             {authError

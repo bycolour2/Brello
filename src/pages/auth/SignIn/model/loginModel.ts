@@ -6,12 +6,11 @@ import {
   attach,
 } from "effector";
 import { debug, not, reset } from "patronum";
+import { routes } from "~/shared/routing";
 
 export type SignInError = "InvalidEmail" | "UnknownError" | "RateLimit";
 
-export const emailChanged = createEvent<string>();
-export const formSubmited = createEvent();
-export const backToLoginPressed = createEvent();
+export const currentRoute = routes.auth.signIn;
 
 const globalSignInFx = createEffect<
   { email: string },
@@ -29,6 +28,10 @@ const globalSignInFx = createEffect<
 });
 
 const signInFx = attach({ effect: globalSignInFx });
+
+export const emailChanged = createEvent<string>();
+export const formSubmited = createEvent();
+export const backToLoginPressed = createEvent();
 
 export const $email = createStore("");
 export const $emailError = createStore<SignInError | null>(null);

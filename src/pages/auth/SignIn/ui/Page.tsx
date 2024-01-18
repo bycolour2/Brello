@@ -20,8 +20,7 @@ import { Button, FeaturedIcon, Input, Logo, Spinner } from "~/shared/ui";
 import { ReactNode } from "react";
 
 export const SignInPage = () => {
-  const [sended, authError] = useUnit([$formSended, $formError]);
-  console.log(authError);
+  const [sended] = useUnit([$formSended]);
 
   return (
     <main className="relative flex h-screen flex-col items-center gap-8 pb-12 lg:h-screen lg:w-screen lg:flex-row lg:justify-between lg:gap-0 lg:p-0">

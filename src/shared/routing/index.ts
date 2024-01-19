@@ -12,6 +12,7 @@ export const controls = createRouterControls();
 
 export const router = createHistoryRouter({
   routes: routesMap,
+  controls,
   notFoundRoute: pageNotFoundRoute,
 });
 

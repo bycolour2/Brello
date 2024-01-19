@@ -1,7 +1,19 @@
+import { useUnit } from "effector-react";
+
 import { IconArrowLeft } from "~/shared/assets/icons";
 import { Button } from "~/shared/ui";
 
+import {
+  goBackButtonClicked,
+  takeMeHomeButtonClicked,
+} from "../model/error404model";
+
 export const Error404Page = () => {
+  const [handleGoBack, handleTakeMeHome] = useUnit([
+    goBackButtonClicked,
+    takeMeHomeButtonClicked,
+  ]);
+
   return (
     <>
       <div className="fdsf flex h-screen flex-row items-center py-16 lg:justify-center lg:py-24">
@@ -24,6 +36,7 @@ export const Error404Page = () => {
             <div className="flex flex-col items-start gap-3 self-stretch lg:flex-row">
               <Button
                 size={"xl"}
+                onClick={() => handleTakeMeHome()}
                 className="self-stretch lg:order-2 lg:self-auto"
               >
                 Take me home
@@ -32,6 +45,7 @@ export const Error404Page = () => {
                 size={"xl"}
                 variant={"secondary-gray"}
                 leadingIcon={<IconArrowLeft />}
+                onClick={() => handleGoBack()}
                 className="self-stretch lg:self-auto"
               >
                 Go back

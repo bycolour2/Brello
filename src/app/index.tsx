@@ -1,9 +1,9 @@
-import { Login } from "~/pages/auth/Login";
+import { RoutesView } from "~/pages";
 
 export function App() {
   return (
     <>
-      <Login />
+      <RoutesView />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { AuthError } from "@supabase/supabase-js";
 import { createEffect } from "effector";
+
 import { client } from "~/shared/api/client";
 import { SITE_URL } from "~/shared/config";
 

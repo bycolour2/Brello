@@ -1,6 +1,7 @@
 import { createHistoryRouter, createRouterControls } from "atomic-router";
 import { sample } from "effector";
 import { createBrowserHistory } from "history";
+
 import { appStarted } from "~/shared/init";
 
 import { pageNotFoundRoute, routesMap } from "./routes";

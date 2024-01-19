@@ -10,11 +10,43 @@ module.exports = {
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh", "jsx-a11y", "prettier"],
+  plugins: ["simple-import-sort", "react-refresh", "jsx-a11y", "prettier"],
   rules: {
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
     ],
   },
+  overrides: [
+    // override "simple-import-sort" config
+    {
+      files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      rules: {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            groups: [
+              // Packages `react` related packages come first.
+              ["^react", "^@?\\w"],
+              // Internal packages.
+              ["^(@|components)(/.*|$)"],
+              // Side effect imports.
+              ["^\\u0000"],
+              ["^~(/app)(/.*|$)"],
+              ["^~(/pages)(/.*|$)"],
+              ["^~(/widgets)(/.*|$)"],
+              ["^~(/features)(/.*|$)"],
+              ["^~(/entities)(/.*|$)"],
+              ["^~(/shared)(/.*|$)"],
+              ["^[./]"],
+              // Parent imports. Put `..` last.
+              [("^\\.\\.(?!/?$)", "^\\.\\./?$")],
+              // Style imports.
+              ["^.+\\.?(css)$"],
+            ],
+          },
+        ],
+      },
+    },
+  ],
 };

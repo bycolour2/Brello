@@ -1,5 +1,6 @@
-import { useUnit } from "effector-react";
 import { ReactNode } from "react";
+import { useUnit } from "effector-react";
+
 import {
   IconAlertCircle,
   IconArrowLeft,
@@ -13,10 +14,10 @@ import {
   $formError,
   $formPending,
   $formSended,
-  SignInError,
   backToLoginPressed,
   emailChanged,
   formSubmited,
+  SignInError,
 } from "../model/loginModel";
 
 export const SignInPage = () => {

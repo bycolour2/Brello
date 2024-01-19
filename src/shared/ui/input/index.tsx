@@ -1,5 +1,6 @@
-import { type VariantProps, cva } from "class-variance-authority";
 import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+
 import { cn } from "~/shared/lib/cn";
 
 const inputVariants = cva(

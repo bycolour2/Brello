@@ -1,12 +1,15 @@
+import ReactDOM from "react-dom/client";
 import { RouterProvider } from "atomic-router-react";
 import { allSettled, fork } from "effector";
 import { Provider } from "effector-react";
-import ReactDOM from "react-dom/client";
+
 import { App } from "~/app";
+
 import { router } from "~/shared/routing";
 
-import "./main.css";
 import { appStarted } from "./shared/init";
+
+import "./main.css";
 
 const scope = fork();
 

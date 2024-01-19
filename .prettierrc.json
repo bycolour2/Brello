@@ -5,23 +5,6 @@
   "semi": true,
   "trailingComma": "all",
   "bracketSpacing": true,
-  "plugins": [
-    "prettier-plugin-tailwindcss",
-    "@trivago/prettier-plugin-sort-imports"
-  ],
-  "tailwindFunctions": ["clsx", "cva", "cn", "twMerge"],
-  "importOrderGroupNamespaceSpecifiers": true,
-  "importOrderParserPlugins": ["typescript", "jsx"],
-  "importOrderSortSpecifiers": true,
-  "importOrderSeparation": true,
-  "importOrder": [
-    "<THIRD_PARTY_MODULES>",
-    "^@/app(.*)$",
-    "^@/pages(.*)$",
-    "^@/widgets(.*)$",
-    "^@/features(.*)$",
-    "^@/entities(.*)$",
-    "^@/shared(.*)$",
-    "^[./]"
-  ]
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["clsx", "cva", "cn", "twMerge"]
 }

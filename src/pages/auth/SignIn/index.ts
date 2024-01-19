@@ -1,5 +1,4 @@
 import { currentRoute } from "./model/loginModel";
-
 import { SignInPage } from "./ui/Page";
 
 const AuthSignInRoute = {

@@ -1,8 +1,7 @@
+import { AuthError } from "@supabase/supabase-js";
 import { createEffect } from "effector";
 import { client } from "~/shared/api/client";
 import { SITE_URL } from "~/shared/config";
-
-import { AuthError } from "@supabase/supabase-js";
 
 export type Email = string;
 export type UserId = Uuid;
@@ -64,5 +63,5 @@ export const signInWithGoogleFx = createEffect<void, void, AuthError>(
     });
 
     checkError(error);
-  }
+  },
 );

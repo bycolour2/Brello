@@ -1,23 +1,23 @@
 import { useUnit } from "effector-react";
-
-import {
-  $email,
-  $emailError,
-  $formSended,
-  $formPending,
-  backToLoginPressed,
-  emailChanged,
-  formSubmited,
-  $formError,
-  SignInError,
-} from "../model/loginModel";
+import { ReactNode } from "react";
 import {
   IconAlertCircle,
   IconArrowLeft,
   IconMail01,
 } from "~/shared/assets/icons";
 import { Button, FeaturedIcon, Input, Logo, Spinner } from "~/shared/ui";
-import { ReactNode } from "react";
+
+import {
+  $email,
+  $emailError,
+  $formError,
+  $formPending,
+  $formSended,
+  SignInError,
+  backToLoginPressed,
+  emailChanged,
+  formSubmited,
+} from "../model/loginModel";
 
 export const SignInPage = () => {
   const [sended] = useUnit([$formSended]);

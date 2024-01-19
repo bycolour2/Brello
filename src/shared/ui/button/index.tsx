@@ -1,6 +1,5 @@
+import { type VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, ReactNode } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "~/shared/lib/cn";
 
 const buttonVariants = cva(
@@ -75,7 +74,7 @@ const buttonVariants = cva(
       size: "md",
       destructive: false,
     },
-  }
+  },
 );
 
 export interface ButtonProps

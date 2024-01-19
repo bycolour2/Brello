@@ -1,4 +1,4 @@
-import { createRoute, UnmappedRouteObject } from "atomic-router";
+import { UnmappedRouteObject, createRoute } from "atomic-router";
 
 export const routes = {
   home: createRoute(),

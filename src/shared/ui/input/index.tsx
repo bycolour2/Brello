@@ -1,6 +1,5 @@
+import { type VariantProps, cva } from "class-variance-authority";
 import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "~/shared/lib/cn";
 
 const inputVariants = cva(
@@ -20,7 +19,7 @@ const inputVariants = cva(
       size: "sm",
       destructive: false,
     },
-  }
+  },
 );
 
 interface InputProps<T extends string>
@@ -60,7 +59,7 @@ export const Input = <T extends string>({
     <label
       className={cn(
         "flex flex-col items-start gap-1.5 self-stretch",
-        className
+        className,
       )}
     >
       <span className="text-sm font-medium text-gray-700">{label}</span>
@@ -75,7 +74,7 @@ export const Input = <T extends string>({
           inputVariants({
             size,
             destructive: hasError,
-          })
+          }),
         )}
         {...rest}
       />
@@ -98,7 +97,7 @@ export const Input = <T extends string>({
           inputVariants({
             size,
             destructive: hasError,
-          })
+          }),
         )}
         {...rest}
       />

@@ -4,6 +4,7 @@ export const routes = {
   home: createRoute(),
   auth: {
     signIn: createRoute(),
+    finished: createRoute(),
   },
   onboarding: {
     user: createRoute(),

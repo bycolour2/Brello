@@ -1,5 +1,5 @@
 import { attach, createEvent, createStore, sample } from "effector";
-import { delay } from "patronum";
+import { delay, reset } from "patronum";
 
 import { api } from "~/shared/api";
 import { routes } from "~/shared/routing";
@@ -39,9 +39,14 @@ sample({
 
 $successfully.on(authFinished, () => true);
 
-delay({
+const readyToRedirect = delay({
   source: authFinished,
   timeout: 1500,
+});
+
+sample({
+  clock: readyToRedirect,
+  filter: currentRoute.$isOpened,
   target: routes.home.open,
 });
 
@@ -61,4 +66,9 @@ $successfully.on(authFailed, () => false);
 sample({
   clock: tryAgainClicked,
   target: routes.auth.signIn.open,
+});
+
+reset({
+  clock: currentRoute.closed,
+  target: $successfully,
 });

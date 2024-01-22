@@ -22,6 +22,14 @@ import {
   SignInError,
 } from "../model/loginModel";
 
+export const PageLoader = () => {
+  return (
+    <LayoutAuthn>
+      <Spinner className="h-20 w-20 text-blue-600" />
+    </LayoutAuthn>
+  );
+};
+
 export const SignInPage = () => {
   const [sended] = useUnit([$formSended]);
 

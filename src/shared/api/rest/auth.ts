@@ -3,19 +3,7 @@ import { createEffect } from "effector";
 
 import { client } from "~/shared/api/client";
 
-export type Email = string;
-export type UserId = Uuid;
-
-export interface User {
-  id: UserId;
-  email: Email;
-}
-
-const checkError = (error: AuthError | null) => {
-  if (error) {
-    throw error;
-  }
-};
+import { checkError, Email, User } from "./common";
 
 export const signInWithEmailFx = createEffect<
   { email: Email },

@@ -1,8 +1,15 @@
-import { currentRoute } from "./model/homeModel";
+import { createRouteView } from "atomic-router-react";
+
+import { authenticatedRoute, currentRoute } from "./model/homeModel";
 import { HomePage } from "./ui/Page";
 
-const HomeRoute = {
+const AuthenticatedView = createRouteView({
+  route: authenticatedRoute,
   view: HomePage,
+});
+
+const HomeRoute = {
+  view: AuthenticatedView,
   route: currentRoute,
 };
 

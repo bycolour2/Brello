@@ -1,17 +1,29 @@
+import { useUnit } from "effector-react";
+
 import { LayoutAuthn } from "~/layouts/authn";
 
-import { IconAlertCircle, IconMail01 } from "~/shared/assets/icons";
-import { FeaturedIcon, Spinner } from "~/shared/ui";
+import {
+  IconAlertCircle,
+  IconArrowLeft,
+  IconMail01,
+} from "~/shared/assets/icons";
+import { Button, FeaturedIcon, Spinner } from "~/shared/ui";
+
+import {
+  $pending,
+  $successfully,
+  tryAgainClicked,
+} from "../model/finishedModel";
 
 export const FinishedPage = () => {
-  const pending = false;
-  const successful = false;
+  const [pending, successfully] = useUnit([$pending, $successfully]);
+
   return (
     <>
       <LayoutAuthn>
         {pending ? (
           <LoginValidating />
-        ) : successful ? (
+        ) : successfully ? (
           <LoginSuccess />
         ) : (
           <LoginError />
@@ -68,6 +80,7 @@ const LoginSuccess = () => {
   );
 };
 const LoginError = () => {
+  const handleTryAgain = useUnit(tryAgainClicked);
   return (
     <>
       <div className="flex flex-col items-start gap-6 self-stretch">
@@ -87,6 +100,14 @@ const LoginError = () => {
           </p>
         </div>
       </div>
+      <Button
+        className="self-start"
+        variant={"link-gray"}
+        leadingIcon={<IconArrowLeft />}
+        onClick={() => handleTryAgain()}
+      >
+        Try again
+      </Button>
     </>
   );
 };

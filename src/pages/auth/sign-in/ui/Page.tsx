@@ -137,7 +137,7 @@ const LoginResult = () => {
         className="self-start"
         variant={"link-gray"}
         leadingIcon={<IconArrowLeft />}
-        onClick={handleBackToLogin}
+        onClick={() => handleBackToLogin()}
       >
         {authError ? "Try again" : "Back to log in"}
       </Button>

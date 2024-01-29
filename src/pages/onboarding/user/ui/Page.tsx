@@ -19,7 +19,7 @@ import {
   formSubmitted,
   lastNameChanged,
   skipButtonClicked,
-} from "../model/onboardingModel";
+} from "../model/onboardingUserModel";
 
 export const PageLoader = () => {
   return (

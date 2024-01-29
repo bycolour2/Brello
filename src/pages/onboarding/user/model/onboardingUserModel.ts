@@ -7,7 +7,7 @@ import { profileExistsFx } from "~/shared/api/rest/profiles";
 import { routes } from "~/shared/routing";
 import { $viewer, chainAuthenticated } from "~/shared/viewer";
 
-export type CreateProfileError = "InvalidFirstName" | "UnknownError";
+export type OnboardingUserError = "InvalidFirstName" | "UnknownError";
 
 const profileExistFx = attach({
   source: $viewer,
@@ -57,7 +57,7 @@ export const $firstName = createStore("");
 export const $lastName = createStore("");
 export const $formPending = profileCreateFx.pending;
 export const $onboardUserFinish = createStore(false);
-export const $formError = createStore<CreateProfileError | null>(null);
+export const $formError = createStore<OnboardingUserError | null>(null);
 
 const $isFirstNameValid = $firstName.map((firstName) =>
   isFirstNameValid(firstName),
@@ -79,7 +79,7 @@ debug({ trace: true }, $formError, profileExistsFx.doneData);
 sample({
   clock: formSubmitted,
   filter: not($isFirstNameValid),
-  fn: (): CreateProfileError => "InvalidFirstName",
+  fn: (): OnboardingUserError => "InvalidFirstName",
   target: $formError,
 });
 
@@ -116,7 +116,7 @@ redirect({
 
 sample({
   clock: profileCreateFx.failData,
-  fn: (): CreateProfileError => "UnknownError",
+  fn: (): OnboardingUserError => "UnknownError",
   target: $formError,
 });
 

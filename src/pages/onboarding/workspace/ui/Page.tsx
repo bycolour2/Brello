@@ -1,9 +1,20 @@
+import { useUnit } from "effector-react";
+
 import { FolderShield } from "~/shared/assets/icons";
 import {
   BackgroundPatternDecorativeLg,
   BackgroundPatternDecorativeMd,
 } from "~/shared/assets/images";
 import { Button, FeaturedIcon, Input, Spinner, Textarea } from "~/shared/ui";
+
+import {
+  $description,
+  $name,
+  $slug,
+  descriptionChanged,
+  nameChanged,
+  slugChanged,
+} from "../model/onboardingWorkspaceModel";
 
 export const PageLoader = () => {
   return (
@@ -14,6 +25,15 @@ export const PageLoader = () => {
 };
 
 export const OnboardingWorkspacePage = () => {
+  const [name, handleName, slug, handleSlug, description, handleDescription] =
+    useUnit([
+      $name,
+      nameChanged,
+      $slug,
+      slugChanged,
+      $description,
+      descriptionChanged,
+    ]);
   return (
     <main className="relative flex h-screen flex-col items-start py-16 lg:flex-[1_0_0] lg:items-center lg:justify-center lg:gap-16 lg:self-stretch lg:py-24">
       <BackgroundPatternDecorativeMd className="absolute right-[-53px] top-[-164px] -z-10 block h-[480px] w-[480px] lg:static lg:hidden" />
@@ -43,23 +63,23 @@ export const OnboardingWorkspacePage = () => {
               label="Workspace name"
               placeholder="Your Company Co."
               size={"md"}
-              value={""}
-              onValue={() => {}}
+              value={name}
+              onValue={({ value }) => handleName(value)}
             />
             <Input
               name="slug"
               label="brello.io/workspaces/"
               placeholder="your-company-co"
               size={"md"}
-              value={""}
-              onValue={() => {}}
+              value={slug}
+              onValue={({ value }) => handleSlug(value)}
             />
             <Textarea
               name="description"
               label="Description"
               placeholder="Our team organizes everything here."
-              value={""}
-              onValue={() => {}}
+              value={description}
+              onValue={({ value }) => handleDescription(value)}
             />
           </div>
           <Button type="submit" size={"xl"} className="self-stretch">

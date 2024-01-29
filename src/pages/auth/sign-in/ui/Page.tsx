@@ -15,7 +15,7 @@ import {
   $emailError,
   $formError,
   $formPending,
-  $formSended,
+  $formSend,
   backToLoginPressed,
   emailChanged,
   formSubmited,
@@ -31,7 +31,7 @@ export const PageLoader = () => {
 };
 
 export const SignInPage = () => {
-  const [sended] = useUnit([$formSended]);
+  const [sended] = useUnit([$formSend]);
 
   return <LayoutAuthn>{!sended ? <LoginForm /> : <LoginResult />}</LayoutAuthn>;
 };

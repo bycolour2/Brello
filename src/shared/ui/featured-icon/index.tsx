@@ -16,6 +16,7 @@ const featuredIconVariants = cva("", {
       "light-circle": "rounded-full",
       "light-circle-outline": "rounded-full p-1",
       "dark-circle": "rounded-full p-1",
+      modern: "rounded border border-gray-200 bg-white p-1.5 shadow-sm",
     },
     size: {
       xs: "h-6 w-6",
@@ -125,6 +126,31 @@ const featuredIconVariants = cva("", {
       theme: "dark-circle",
       color: "success",
       className: "border-green-600 bg-green-500",
+    },
+    {
+      theme: "modern",
+      size: "xs",
+      className: "rounded p-1.5",
+    },
+    {
+      theme: "modern",
+      size: "sm",
+      className: "rounded-md p-2",
+    },
+    {
+      theme: "modern",
+      size: "md",
+      className: "rounded-lg p-2.5",
+    },
+    {
+      theme: "modern",
+      size: "lg",
+      className: "rounded-[10px] p-3",
+    },
+    {
+      theme: "modern",
+      size: "xl",
+      className: "rounded-xl p-3.5",
     },
   ],
   defaultVariants: {

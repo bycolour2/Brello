@@ -40,8 +40,8 @@ export const profileCreateFx = createEffect<
   PostgrestError
 >(async ({ profile }) => {
   const { userId, firstName, lastName } = profile;
-  const { error } = await client.from("profile").insert({
-    id: userId,
+  const { error } = await client.from("profiles").insert({
+    user_id: userId,
     first_name: firstName,
     last_name: lastName,
   });

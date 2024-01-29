@@ -8,7 +8,7 @@ const inputVariants = cva(
   {
     variants: {
       destructive: {
-        true: "border-red-300 focus-within:ring-[#FEE4E2]",
+        true: "border-red-300 focus-visible:ring-[#FEE4E2]",
         false: "",
       },
       size: {

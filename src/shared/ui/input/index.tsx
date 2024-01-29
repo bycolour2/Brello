@@ -67,9 +67,9 @@ export const Input = <T extends string>({
       <input
         name={name}
         type={type}
-        value={value}
         disabled={disabled}
         aria-disabled={disabled}
+        value={value}
         onChange={handleChange}
         className={cn(
           inputVariants({
@@ -92,6 +92,8 @@ export const Input = <T extends string>({
       <input
         name={name}
         type={type}
+        disabled={disabled}
+        aria-disabled={disabled}
         value={value}
         onChange={handleChange}
         className={cn(

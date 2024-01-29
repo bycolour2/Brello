@@ -21,7 +21,7 @@ export const backToLoginPressed = createEvent();
 export const $email = createStore("");
 export const $emailError = createStore<SignInError | null>(null);
 export const $formPending = signInFx.pending;
-export const $formSended = createStore(false);
+export const $formSend = createStore(false);
 export const $formError = createStore<SignInError | null>(null);
 
 const $isEmailValid = $email.map((email) => isEmailValid(email));
@@ -37,7 +37,7 @@ sample({
   target: [signInFx, $emailError.reinit],
 });
 
-$formSended.on(signInFx.finally, () => true);
+$formSend.on(signInFx.finally, () => true);
 
 sample({
   clock: formSubmited,
@@ -53,7 +53,7 @@ $formError.on(signInFx.failData, (_, error) => {
 
 reset({
   clock: backToLoginPressed,
-  target: [$formSended, $email, $emailError, $formError],
+  target: [$formSend, $email, $emailError, $formError],
 });
 
 function isEmailValid(email: string) {

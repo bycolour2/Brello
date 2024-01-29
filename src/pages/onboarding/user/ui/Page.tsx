@@ -19,7 +19,7 @@ import {
   formSubmitted,
   lastNameChanged,
   skipButtonClicked,
-} from "../model/onboardingModel";
+} from "../model/onboardingUserModel";
 
 export const PageLoader = () => {
   return (
@@ -58,10 +58,10 @@ export const OnboardingUserPage = () => {
   ]);
 
   return (
-    <main className="relative flex h-screen flex-col items-start py-16 lg:flex-[1_0_0] lg:items-center lg:justify-center lg:gap-16 lg:self-stretch lg:py-24">
+    <main className="relative flex h-screen flex-col items-start overflow-x-hidden py-16 lg:flex-[1_0_0] lg:items-center lg:justify-center lg:gap-16 lg:self-stretch lg:py-24">
+      <GridBackgroundPatternMd className="absolute right-[-53px] top-[-164px] -z-10 block h-[480px] w-[480px] lg:hidden" />
+      <GridBackgroundPatternLg className="hidden lg:absolute lg:left-[336px] lg:top-[-196px] lg:-z-10 lg:block lg:h-[768px] lg:w-[768px] lg:shadow-[0_0_8px_8px_white_inset]" />
       <section className="flex flex-col items-start gap-12 px-4 lg:w-[512px] lg:gap-12 lg:px-0">
-        <GridBackgroundPatternMd className="absolute right-[-53px] top-[-164px] -z-10 block h-[480px] w-[480px] lg:static lg:hidden" />
-        <GridBackgroundPatternLg className="lg:shadow-[0_0_8px_8px_white_inset hidden lg:absolute lg:left-[336px] lg:top-[-196px] lg:-z-10 lg:block lg:h-[768px] lg:w-[768px]" />
         {formSendSuccess ? (
           <div className="flex flex-[1_0_0] flex-col items-start gap-8 self-stretch lg:gap-8">
             <FeaturedIcon

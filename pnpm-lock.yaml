@@ -29,6 +29,9 @@ dependencies:
   effector-react:
     specifier: ^22.5.4
     version: 22.5.4(effector@22.8.8)(react@18.2.0)
+  effector-storage:
+    specifier: ^7.0.0
+    version: 7.0.0(effector@22.8.8)
   history:
     specifier: ^5.3.0
     version: 5.3.0
@@ -1775,6 +1778,14 @@ packages:
       effector: 22.8.8
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /effector-storage@7.0.0(effector@22.8.8):
+    resolution: {integrity: sha512-iTwpZotNaEesliP/3jSE5eXGajBSci0Q7oCaTfgenNAwnZBrudwwifTxKU9+eI08QRh78AyS+Z6UfHX3aD+zOg==}
+    peerDependencies:
+      effector: ^22.4.0 || ^23.0.0
+    dependencies:
+      effector: 22.8.8
     dev: false
 
   /effector@22.8.8:

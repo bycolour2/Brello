@@ -1,16 +1,25 @@
 import { createRouteView } from "atomic-router-react";
 
-import { authenticatedRoute, currentRoute } from "./model/homeModel";
+import {
+  authenticatedRoute,
+  currentRoute,
+  onboardedRoute,
+} from "./model/homeModel";
 import { HomePage } from "./ui/Page";
 
-const AuthenticatedView = createRouteView({
-  route: authenticatedRoute,
+const OnboardedView = createRouteView({
+  route: onboardedRoute,
   view: HomePage,
 });
 
+const AuthenticatedView = createRouteView<unknown, object, object>({
+  route: authenticatedRoute,
+  view: OnboardedView,
+});
+
 const HomeRoute = {
-  view: AuthenticatedView,
   route: currentRoute,
+  view: AuthenticatedView,
 };
 
 export default HomeRoute;

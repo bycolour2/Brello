@@ -6,15 +6,15 @@ import {
 } from "./model/onboardingWorkspaceModel";
 import { OnboardingWorkspacePage, PageLoader } from "./ui/Page";
 
-const WorkspaceLoadView = createRouteView({
-  route: authenticatedRoute,
-  view: OnboardingWorkspacePage,
-  otherwise: PageLoader,
-});
+// const WorkspaceLoadView = createRouteView({
+//   route: authenticatedRoute,
+//   view: OnboardingWorkspacePage,
+//   otherwise: PageLoader,
+// });
 
 const AuthenticationView = createRouteView<unknown, object, object>({
   route: authenticatedRoute,
-  view: WorkspaceLoadView,
+  view: OnboardingWorkspacePage,
   otherwise: PageLoader,
 });
 

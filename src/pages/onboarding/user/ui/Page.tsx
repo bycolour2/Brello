@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Link } from "atomic-router-react";
 import { useUnit } from "effector-react";
 
 import { Checkmark, User01 } from "~/shared/assets/icons";
@@ -6,6 +7,7 @@ import {
   GridBackgroundPatternLg,
   GridBackgroundPatternMd,
 } from "~/shared/assets/images";
+import { routes } from "~/shared/routing";
 import { Button, FeaturedIcon, Input, Spinner } from "~/shared/ui";
 
 import {
@@ -58,8 +60,8 @@ export const OnboardingUserPage = () => {
   ]);
 
   return (
-    <main className="relative flex h-screen flex-col items-start py-16 lg:flex-[1_0_0] lg:items-center lg:justify-center lg:gap-16 lg:self-stretch lg:py-24">
-      <GridBackgroundPatternMd className="absolute right-[-53px] top-[-164px] -z-10 block h-[480px] w-[480px] lg:hidden" />
+    <main className="relative flex h-screen flex-col items-start overflow-hidden py-16 lg:flex-[1_0_0] lg:items-center lg:justify-center lg:gap-16 lg:self-stretch lg:py-24">
+      <GridBackgroundPatternMd className="absolute right-[-53px] top-[-164px] -z-10 block lg:hidden" />
       <GridBackgroundPatternLg className="hidden lg:absolute lg:left-[336px] lg:top-[-196px] lg:-z-10 lg:block lg:h-[768px] lg:w-[768px] lg:shadow-[0_0_8px_8px_white_inset]" />
       <section className="flex flex-col items-start gap-12 px-4 lg:w-[512px] lg:gap-12 lg:px-0">
         {formSendSuccess ? (
@@ -90,14 +92,16 @@ export const OnboardingUserPage = () => {
                 <p className="text-lg text-gray-600 lg:text-xl">
                   You can do this later on Profile page.{" "}
                   <br className="lg:hidden" />
-                  <Button
-                    type="button"
-                    variant={"link-color"}
-                    onClick={() => handleSkipClick()}
-                    className="text-lg font-medium text-blue-600 lg:text-xl"
-                  >
-                    Skip
-                  </Button>
+                  <Link to={routes.home}>
+                    <Button
+                      type="button"
+                      variant={"link-color"}
+                      onClick={() => handleSkipClick()}
+                      className="text-lg font-medium text-blue-600 lg:text-xl"
+                    >
+                      Skip
+                    </Button>
+                  </Link>
                 </p>
               </div>
             </header>
@@ -129,9 +133,9 @@ export const OnboardingUserPage = () => {
                   className="lg:flex-[1_0_0] lg:self-start"
                 />
                 {formError ? (
-                  <div className="self-stretch text-sm text-red-500">
+                  <p className="self-stretch text-sm text-red-500">
                     {formError ? errorText[formError] : null}
-                  </div>
+                  </p>
                 ) : null}
               </div>
               <Button

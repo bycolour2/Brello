@@ -1,20 +1,26 @@
-import { chainRoute, redirect } from "atomic-router";
+// import { chainRoute } from "atomic-router";
 import { attach, createEvent, createStore, sample } from "effector";
-import { debug, delay, not, reset } from "patronum";
+import { delay, not, reset } from "patronum";
+
+import {
+  onboardingProfileCheckDone,
+  onboardingProfileSkip,
+} from "~/features/onboarding";
 
 import { api } from "~/shared/api";
-import { profileExistsFx } from "~/shared/api/rest/profiles";
+// import { profileExistsFx } from "~/shared/api/rest/profiles";
 import { routes } from "~/shared/routing";
+import { comebackRestore } from "~/shared/routing/comeback";
 import { $viewer, chainAuthenticated } from "~/shared/viewer";
 
 export type OnboardingUserError = "InvalidFirstName" | "UnknownError";
 
-const profileExistFx = attach({
-  source: $viewer,
-  async effect(viewer) {
-    return api.profiles.profileExistsFx({ userId: viewer!.id });
-  },
-});
+// const profileExistFx = attach({
+//   source: $viewer,
+//   async effect(viewer) {
+//     return api.profiles.profileExistsFx({ userId: viewer!.id });
+//   },
+// });
 const profileCreateFx = attach({ effect: api.profiles.profileCreateFx });
 
 export const currentRoute = routes.onboarding.user;
@@ -23,13 +29,13 @@ export const authenticatedRoute = chainAuthenticated(currentRoute, {
   otherwise: routes.auth.signIn.open,
 });
 
-export const profileLoadRoute = chainRoute({
-  route: authenticatedRoute,
-  beforeOpen: {
-    effect: profileExistFx,
-    mapParams: () => ({}),
-  },
-});
+// export const profileLoadRoute = chainRoute({
+//   route: authenticatedRoute,
+//   beforeOpen: {
+//     effect: profileExistFx,
+//     mapParams: () => ({}),
+//   },
+// });
 
 /**
  * 1. Проверка авторизации //*
@@ -38,7 +44,7 @@ export const profileLoadRoute = chainRoute({
  *  2.2. Если профиль не существует - показываем форму //*
  * 3. Создание профиля //*
  *  3.1 Пользователь вводит данные в форму //*
- *  3.2 Пропустить форму
+ *  3.2 Пропустить форму //*
  * 4. Попытка отправки формы //*
  * 5. Валидация формы //*
  * 6. Если валидация прошла успешно - отправка формы на сервер //*
@@ -50,7 +56,7 @@ export const profileLoadRoute = chainRoute({
 export const firstNameChanged = createEvent<string>();
 export const lastNameChanged = createEvent<string>();
 export const formSubmitted = createEvent();
-const onbordingFinished = createEvent();
+const onbordingUserFinished = createEvent();
 export const skipButtonClicked = createEvent();
 
 export const $firstName = createStore("");
@@ -64,17 +70,20 @@ const $isFirstNameValid = $firstName.map((firstName) =>
 );
 
 sample({
-  clock: profileExistsFx.doneData,
-  filter: (exists) => exists,
-  target: routes.home.open,
+  clock: authenticatedRoute.$isOpened,
+  filter: onboardingProfileCheckDone.$isSet,
+  target: comebackRestore,
+});
+
+sample({
+  clock: skipButtonClicked,
+  target: onboardingProfileSkip.enable,
 });
 
 $firstName.on(firstNameChanged, (_, firstName) => firstName);
 $formError.reset(firstNameChanged);
 
 $lastName.on(lastNameChanged, (_, lastName) => lastName);
-
-debug({ trace: true }, $formError, profileExistsFx.doneData);
 
 sample({
   clock: formSubmitted,
@@ -95,7 +104,7 @@ sample({
 
 sample({
   clock: profileCreateFx.doneData,
-  target: onbordingFinished,
+  target: onbordingUserFinished,
 });
 
 sample({
@@ -105,13 +114,13 @@ sample({
 });
 
 const delayedOnbordingFinished = delay({
-  source: onbordingFinished,
+  source: onbordingUserFinished,
   timeout: 2000,
 });
 
-redirect({
+sample({
   clock: delayedOnbordingFinished,
-  route: routes.home,
+  target: comebackRestore,
 });
 
 sample({

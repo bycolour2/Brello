@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { useUnit } from "effector-react";
 
 import { FolderShield } from "~/shared/assets/icons";
@@ -9,10 +10,13 @@ import { Button, FeaturedIcon, Input, Spinner, Textarea } from "~/shared/ui";
 
 import {
   $description,
+  $formError,
   $name,
   $slug,
   descriptionChanged,
+  formSubmitted,
   nameChanged,
+  OnboardingWorkspaceError,
   slugChanged,
 } from "../model/onboardingWorkspaceModel";
 
@@ -24,18 +28,35 @@ export const PageLoader = () => {
   );
 };
 
+const errorText: { [Key in OnboardingWorkspaceError]: ReactNode } = {
+  NameInvalid: "Must be valid name.",
+  SlugInvalid: "Must be valid slug.",
+  SlugTaken: "This slug is already taken.",
+  UnknownError: "Something wrong happened. Please, try again.",
+};
+
 export const OnboardingWorkspacePage = () => {
-  const [name, handleName, slug, handleSlug, description, handleDescription] =
-    useUnit([
-      $name,
-      nameChanged,
-      $slug,
-      slugChanged,
-      $description,
-      descriptionChanged,
-    ]);
+  const [
+    name,
+    handleName,
+    slug,
+    handleSlug,
+    description,
+    handleDescription,
+    handleFormSubmit,
+    formError,
+  ] = useUnit([
+    $name,
+    nameChanged,
+    $slug,
+    slugChanged,
+    $description,
+    descriptionChanged,
+    formSubmitted,
+    $formError,
+  ]);
   return (
-    <main className="relative flex h-screen flex-col items-start py-16 lg:flex-[1_0_0] lg:items-center lg:justify-center lg:gap-16 lg:self-stretch lg:py-24">
+    <main className="relative flex h-screen flex-col items-start overflow-hidden py-16 lg:flex-[1_0_0] lg:items-center lg:justify-center lg:gap-16 lg:self-stretch lg:py-24">
       <BackgroundPatternDecorativeMd className="absolute right-[-53px] top-[-164px] -z-10 block h-[480px] w-[480px] lg:static lg:hidden" />
       <BackgroundPatternDecorativeLg className="lg:shadow-[0_0_8px_8px_white_inset hidden lg:absolute lg:left-[336px] lg:top-[-196px] lg:-z-10 lg:block lg:h-[768px] lg:w-[768px]" />
       <section className="flex flex-col items-start gap-8 px-4 lg:w-[512px] lg:gap-8 lg:px-0">
@@ -54,6 +75,7 @@ export const OnboardingWorkspacePage = () => {
         <form
           onSubmit={(event) => {
             event.preventDefault();
+            handleFormSubmit();
           }}
           className="flex flex-col items-start gap-8 self-stretch"
         >
@@ -82,6 +104,11 @@ export const OnboardingWorkspacePage = () => {
               onValue={({ value }) => handleDescription(value)}
             />
           </div>
+          {formError ? (
+            <p className="self-stretch text-sm text-red-500">
+              {formError ? errorText[formError] : null}
+            </p>
+          ) : null}
           <Button type="submit" size={"xl"} className="self-stretch">
             Get started
           </Button>

@@ -1,10 +1,12 @@
-import { chainRoute, redirect } from "atomic-router";
-import { debug } from "console";
+// import { chainRoute } from "atomic-router";
 import { attach, createEvent, createStore, sample } from "effector";
 import { and, delay, not, reset } from "patronum";
 
+import { onboardingWorkspaceCheckDone } from "~/features/onboarding";
+
 import { api } from "~/shared/api";
 import { routes } from "~/shared/routing";
+import { comebackRestore } from "~/shared/routing/comeback";
 import { $viewer, chainAuthenticated } from "~/shared/viewer";
 
 export type OnboardingWorkspaceError =
@@ -13,28 +15,28 @@ export type OnboardingWorkspaceError =
   | "SlugTaken"
   | "UnknownError";
 
-const workspaceExistFx = attach({
-  source: $viewer,
-  async effect(viewer) {
-    return api.workspaces.workspaceExistsFx({ userId: viewer!.id });
-  },
-});
+// const workspaceExistsFx = attach({
+//   source: $viewer,
+//   async effect(viewer) {
+//     return api.workspaces.workspaceExistsFx({ userId: viewer!.id });
+//   },
+// });
 const workspaceCreateFx = attach({ effect: api.workspaces.workspaceCreateFx });
 
 export const currentRoute = routes.onboarding.workspace;
 export const authenticatedRoute = chainAuthenticated(currentRoute, {
   otherwise: routes.auth.signIn.open,
 });
-export const workspaceLoadedRoute = chainRoute({
-  route: authenticatedRoute,
-  beforeOpen: { effect: workspaceExistFx, mapParams: () => ({}) },
-});
+// export const workspaceLoadedRoute = chainRoute({
+//   route: authenticatedRoute,
+//   beforeOpen: { effect: workspaceExistsFx, mapParams: () => ({}) },
+// });
 
 export const nameChanged = createEvent<string>();
 export const slugChanged = createEvent<string>();
 export const descriptionChanged = createEvent<string>();
 export const formSubmitted = createEvent();
-const onbordingFinished = createEvent();
+const onbordingWorkspaceFinished = createEvent();
 
 export const $name = createStore("");
 export const $slug = createStore("");
@@ -49,15 +51,13 @@ $description.on(descriptionChanged, (_, description) => description);
 
 const $isNameValid = $name.map((name) => isNameValid(name));
 const $isSlugValid = $slug.map((slug) => isSlugValid(slug));
-const $isSlugTaken = $slug.map(() => false);
+const $isSlugTaken = $slug.map(() => true);
 
 sample({
-  clock: workspaceExistFx.doneData,
-  filter: (exists) => exists,
-  target: routes.home.open,
+  clock: authenticatedRoute.$isOpened,
+  filter: onboardingWorkspaceCheckDone.$isSet,
+  target: comebackRestore,
 });
-
-debug({ trace: true }, $formError, workspaceExistFx.doneData);
 
 sample({
   clock: formSubmitted,
@@ -95,7 +95,7 @@ sample({
 
 sample({
   clock: workspaceCreateFx.doneData,
-  target: onbordingFinished,
+  target: onbordingWorkspaceFinished,
 });
 
 sample({
@@ -105,13 +105,13 @@ sample({
 });
 
 const delayedOnbordingFinished = delay({
-  source: onbordingFinished,
+  source: onbordingWorkspaceFinished,
   timeout: 2000,
 });
 
-redirect({
+sample({
   clock: delayedOnbordingFinished,
-  route: routes.home,
+  target: comebackRestore,
 });
 
 sample({

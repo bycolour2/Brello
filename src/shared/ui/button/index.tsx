@@ -105,7 +105,7 @@ export const Button = ({
       {...props}
     >
       {leadingIcon && <div className="h-5 w-5">{leadingIcon}</div>}
-      <span>{children}</span>
+      {children}
       {trailingIcon && <div className="h-5 w-5">{trailingIcon}</div>}
     </button>
   );

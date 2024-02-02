@@ -1,0 +1,13 @@
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <clipPath id="clip7_27348">
+      <rect id="x-close" width="24.000000" height="24.000000" fill="white" fill-opacity="0" />
+    </clipPath>
+  </defs>
+  <rect id="x-close" width="24.000000" height="24.000000" fill="#FFFFFF" fill-opacity="0" />
+  <g clip-path="url(#clip7_27348)">
+    <path id="Icon" d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-opacity="1.000000"
+      stroke-width="2.000000" stroke-linejoin="round" />
+  </g>
+</svg>

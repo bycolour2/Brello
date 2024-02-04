@@ -26,25 +26,22 @@ export const Navigation = () => {
   };
 
   useEffect(() => {
+    const container = document.body;
+
+    if (!container) return;
     if (isMobileNavOpen) {
-      document
-        .querySelector("#scrollContainer")!
-        .classList.add("overflow-hidden");
+      container.classList.add("overflow-hidden");
     } else {
-      document
-        .querySelector("#scrollContainer")!
-        .classList.remove("overflow-hidden");
+      container.classList.remove("overflow-hidden");
     }
 
     return () => {
-      document
-        .querySelector("#scrollContainer")!
-        .classList.remove("overflow-auto");
+      if (container) container.classList.remove("overflow-auto");
     };
   }, [isMobileNavOpen]);
 
   return (
-    <header className="inline-flex flex-col items-start">
+    <header className="inline-flex flex-col items-start self-stretch">
       <div className="z-10 flex h-[64px] flex-col items-center self-stretch border-b border-gray-200 shadow-sm lg:h-[72px]">
         <div className=" flex flex-[1_0_0] items-center justify-between self-stretch bg-white py-3 pl-4 pr-2 lg:mx-auto lg:w-[1280px]">
           <div className="flex items-center gap-4">

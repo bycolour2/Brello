@@ -1,5 +1,7 @@
 import { createRouteView } from "atomic-router-react";
 
+import { LayoutBase } from "~/layouts/base";
+
 import {
   authenticatedRoute,
   currentRoute,
@@ -14,6 +16,7 @@ const AuthenticatedView = createRouteView<unknown, object, object>({
 const WorkspaceSettings = {
   route: currentRoute,
   view: AuthenticatedView,
+  layout: LayoutBase,
 };
 
 export default WorkspaceSettings;

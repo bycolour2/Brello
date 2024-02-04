@@ -11,6 +11,9 @@ export const routes = {
     workspace: createRoute(),
   },
   workspaces: {
+    view: {
+      boards: createRoute<{ workspaceId: string }>(),
+    },
     settings: createRoute<{ workspaceId: string }>(),
   },
 };
@@ -25,6 +28,10 @@ export const routesMap: UnmappedRouteObject<any>[] = [
   { path: "/auth/finish", route: routes.auth.finish },
   { path: "/onboarding/user", route: routes.onboarding.user },
   { path: "/onboarding/workspace", route: routes.onboarding.workspace },
+  {
+    path: "/workspaces/:workspaceId/boards",
+    route: routes.workspaces.view.boards,
+  },
   {
     path: "/workspaces/:workspaceId/settings",
     route: routes.workspaces.settings,

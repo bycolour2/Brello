@@ -41,7 +41,7 @@ export const Navigation = () => {
   }, [isMobileNavOpen]);
 
   return (
-    <header className="inline-flex flex-col items-start self-stretch">
+    <>
       <div className="z-10 flex h-[64px] flex-col items-center self-stretch border-b border-gray-200 shadow-sm lg:h-[72px]">
         <div className=" flex flex-[1_0_0] items-center justify-between self-stretch bg-white py-3 pl-4 pr-2 lg:mx-auto lg:w-[1280px]">
           <div className="flex items-center gap-4">
@@ -77,7 +77,6 @@ export const Navigation = () => {
           </div>
         </div>
       </div>
-
       <div
         className={cn(
           "absolute left-0 right-0 top-0 z-0 flex -translate-y-full flex-col items-start justify-start bg-black transition-transform duration-500 lg:hidden",
@@ -108,7 +107,7 @@ export const Navigation = () => {
           ) : null}
         </nav>
       </div>
-    </header>
+    </>
   );
 };
 

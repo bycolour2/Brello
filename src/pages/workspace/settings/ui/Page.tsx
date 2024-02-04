@@ -2,7 +2,7 @@ import { FormEvent } from "react";
 import { reflect } from "@effector/reflect";
 import { useUnit } from "effector-react";
 
-import { Button, Input, Navigation, Textarea } from "~/shared/ui";
+import { Button, Input, Textarea } from "~/shared/ui";
 import { ImageUpload } from "~/shared/ui/upload-input";
 
 import {
@@ -29,73 +29,70 @@ export const WorkspaceSettingsPage = () => {
   };
 
   return (
-    <main className="flex h-screen flex-col">
-      <Navigation />
-      <section
-        id="scrollContainer"
-        className="flex flex-grow flex-col items-start justify-start gap-8 pb-12 pt-6 lg:pb-24 lg:pt-12"
-      >
-        <header className="flex flex-col items-start justify-start self-stretch px-4 lg:mx-auto lg:w-[1280px] lg:gap-5 lg:px-8">
-          <h3 className="text-2xl font-semibold text-gray-900 lg:text-3xl">
-            Workspace settings
-          </h3>
-          <div className="hidden h-px w-full self-stretch bg-gray-200 lg:block" />
-        </header>
-        <div className="flex flex-col items-start justify-start gap-6 self-stretch px-4 lg:mx-auto lg:w-[1280px] lg:px-8">
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col items-start justify-start gap-5 self-stretch"
-          >
-            <LogoUpload />
+    <section
+      id="scrollContainer"
+      className="flex flex-grow flex-col items-start justify-start gap-8 pb-12 pt-6 lg:pb-24 lg:pt-12"
+    >
+      <header className="flex flex-col items-start justify-start self-stretch px-4 lg:mx-auto lg:w-[1280px] lg:gap-5 lg:px-8">
+        <h3 className="text-2xl font-semibold text-gray-900 lg:text-3xl">
+          Workspace settings
+        </h3>
+        <div className="hidden h-px w-full self-stretch bg-gray-200 lg:block" />
+      </header>
+      <div className="flex flex-col items-start justify-start gap-6 self-stretch px-4 lg:mx-auto lg:w-[1280px] lg:px-8">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-start justify-start gap-5 self-stretch"
+        >
+          <LogoUpload />
+          <div className="h-px w-full self-stretch bg-gray-200" />
+          <div className="flex flex-col items-start justify-start gap-5 self-stretch lg:flex-row">
+            <label
+              htmlFor="name"
+              className="flex flex-col items-start justify-start self-stretch text-sm font-medium text-gray-700 lg:w-[280px]"
+            >
+              Name
+              <span className="text-sm font-normal text-gray-600">
+                This will be displayed on your profile.
+              </span>
+            </label>
+            <div className="flex w-full flex-col items-start justify-start gap-4 self-stretch lg:w-[512px]">
+              <Name />
+              <Slug />
+            </div>
+          </div>
+          <div className="h-px w-full self-stretch bg-gray-200" />
+          <div className="flex flex-col items-start justify-start gap-5 self-stretch lg:flex-row">
+            <label
+              htmlFor="description"
+              className="flex flex-col items-start justify-start self-stretch text-sm font-medium text-gray-700 lg:w-[280px]"
+            >
+              Description
+              <span className="text-sm font-normal text-gray-600">
+                A quick snapshot of your workspace.
+              </span>
+            </label>
+            <div className="flex flex-col items-start justify-start gap-4 self-stretch lg:w-[512px]">
+              <Description />
+            </div>
+          </div>
+          <footer className="flex-start flex flex-col items-center gap-4 self-stretch">
+            <Error />
             <div className="h-px w-full self-stretch bg-gray-200" />
-            <div className="flex flex-col items-start justify-start gap-5 self-stretch lg:flex-row">
-              <label
-                htmlFor="name"
-                className="flex flex-col items-start justify-start self-stretch text-sm font-medium text-gray-700 lg:w-[280px]"
-              >
-                Name
-                <span className="text-sm font-normal text-gray-600">
-                  This will be displayed on your profile.
-                </span>
-              </label>
-              <div className="flex w-full flex-col items-start justify-start gap-4 self-stretch lg:w-[512px]">
-                <Name />
-                <Slug />
+            <div className="flex flex-row items-center justify-end self-stretch">
+              <div className="flex flex-row items-center justify-end gap-3">
+                <Button variant={"secondary-gray"} disabled={pending}>
+                  Cancel
+                </Button>
+                <Button type="submit" disabled={pending}>
+                  Save
+                </Button>
               </div>
             </div>
-            <div className="h-px w-full self-stretch bg-gray-200" />
-            <div className="flex flex-col items-start justify-start gap-5 self-stretch lg:flex-row">
-              <label
-                htmlFor="description"
-                className="flex flex-col items-start justify-start self-stretch text-sm font-medium text-gray-700 lg:w-[280px]"
-              >
-                Description
-                <span className="text-sm font-normal text-gray-600">
-                  A quick snapshot of your workspace.
-                </span>
-              </label>
-              <div className="flex flex-col items-start justify-start gap-4 self-stretch lg:w-[512px]">
-                <Description />
-              </div>
-            </div>
-            <footer className="flex-start flex flex-col items-center gap-4 self-stretch">
-              <Error />
-              <div className="h-px w-full self-stretch bg-gray-200" />
-              <div className="flex flex-row items-center justify-end self-stretch">
-                <div className="flex flex-row items-center justify-end gap-3">
-                  <Button variant={"secondary-gray"} disabled={pending}>
-                    Cancel
-                  </Button>
-                  <Button type="submit" disabled={pending}>
-                    Save
-                  </Button>
-                </div>
-              </div>
-            </footer>
-          </form>
-        </div>
-      </section>
-    </main>
+          </footer>
+        </form>
+      </div>
+    </section>
   );
 };
 

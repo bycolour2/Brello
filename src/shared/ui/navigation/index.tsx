@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Link } from "atomic-router-react";
 import { useUnit } from "effector-react";
 
@@ -25,9 +25,27 @@ export const Navigation = () => {
     setIsMobileNavOpen((prev) => !prev);
   };
 
+  useEffect(() => {
+    if (isMobileNavOpen) {
+      document
+        .querySelector("#scrollContainer")!
+        .classList.add("overflow-hidden");
+    } else {
+      document
+        .querySelector("#scrollContainer")!
+        .classList.remove("overflow-hidden");
+    }
+
+    return () => {
+      document
+        .querySelector("#scrollContainer")!
+        .classList.remove("overflow-auto");
+    };
+  }, [isMobileNavOpen]);
+
   return (
     <header className="inline-flex flex-col items-start">
-      <div className="z-10 flex h-[72px] flex-col items-center self-stretch border-b border-gray-200 shadow-sm">
+      <div className="z-10 flex h-[64px] flex-col items-center self-stretch border-b border-gray-200 shadow-sm lg:h-[72px]">
         <div className=" flex flex-[1_0_0] items-center justify-between self-stretch bg-white py-3 pl-4 pr-2 lg:mx-auto lg:w-[1280px]">
           <div className="flex items-center gap-4">
             <Logo />
@@ -66,7 +84,7 @@ export const Navigation = () => {
       <div
         className={cn(
           "absolute left-0 right-0 top-0 z-0 flex -translate-y-full flex-col items-start justify-start bg-black transition-transform duration-500 lg:hidden",
-          isMobileNavOpen ? "translate-y-[72px]" : "",
+          isMobileNavOpen ? "translate-y-[64px]" : "",
         )}
       >
         <nav className="flex flex-col items-start justify-start self-stretch bg-white shadow-lg">
@@ -125,7 +143,7 @@ export const NavigationItem = ({
     <li
       onMouseEnter={handleDropdownOpen}
       onMouseLeave={handleDropdownClose}
-      className="relative flex h-12 items-center gap-2 self-stretch rounded-md bg-white px-3 py-2 hover:bg-gray-50 lg:h-10"
+      className="relative flex h-12 items-center gap-2 self-stretch rounded-md bg-white px-4 py-3 hover:bg-gray-50 lg:h-10 lg:px-3 lg:py-2"
     >
       <Link to={to ? to : "#"}>
         <div className="flex flex-[1_0_0] flex-row items-center gap-3">
@@ -166,11 +184,9 @@ export const NavigationItem = ({
               isDropdownOpen ? "" : "hidden",
             )}
           >
-            <Link to={""}>
-              <li className="flex items-center gap-2 self-stretch rounded-md border border-gray-100/60 bg-white py-2 pl-12 pr-3 font-semibold text-gray-700 shadow-sm hover:bg-gray-50">
-                1dfsdf
-              </li>
-            </Link>
+            <li className="flex items-center gap-2 self-stretch rounded-md border border-gray-100/60 bg-white py-2 pl-12 pr-3 font-semibold text-gray-700 shadow-sm hover:bg-gray-50">
+              <Link to={""}>1dfsdf</Link>
+            </li>
           </ul>
         </>
       ) : null}

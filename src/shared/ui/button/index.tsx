@@ -86,6 +86,7 @@ export interface ButtonProps
 }
 
 export const Button = ({
+  type = "button",
   className,
   variant,
   destructive,
@@ -98,7 +99,7 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      type="button"
+      type={type}
       disabled={disabled}
       aria-disabled={disabled}
       className={cn(buttonVariants({ variant, destructive, size, className }))}

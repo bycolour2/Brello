@@ -86,7 +86,7 @@ export const OnboardingWorkspacePage = () => {
               placeholder="Your Company Co."
               size={"md"}
               value={name}
-              onValue={({ value }) => handleName(value)}
+              onValue={(value) => handleName(value)}
             />
             <Input
               name="slug"
@@ -94,14 +94,14 @@ export const OnboardingWorkspacePage = () => {
               placeholder="your-company-co"
               size={"md"}
               value={slug}
-              onValue={({ value }) => handleSlug(value)}
+              onValue={(value) => handleSlug(value)}
             />
             <Textarea
               name="description"
               label="Description"
               placeholder="Our team organizes everything here."
               value={description}
-              onValue={({ value }) => handleDescription(value)}
+              onValue={(value) => handleDescription(value)}
             />
           </div>
           {formError ? (

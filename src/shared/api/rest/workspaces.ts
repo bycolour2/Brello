@@ -51,14 +51,14 @@ export const workspaceCreateFx = createEffect<
 });
 
 export const workspaceGetFx = createEffect<
-  { userId: UserId },
+  { workspaceId: string },
   Workspace | null,
   PostgrestError
->(async ({ userId }) => {
+>(async ({ workspaceId }) => {
   const { data, error } = await client
     .from("workspaces")
     .select()
-    .eq("user_id", userId);
+    .eq("id", workspaceId);
 
   checkError(error);
 
@@ -66,11 +66,11 @@ export const workspaceGetFx = createEffect<
     return null;
   }
 
-  const { id, name, slug, description, avatar_url } = data[0];
+  const { id, name, user_id, slug, description, avatar_url } = data[0];
 
   return {
     id,
-    userId,
+    userId: user_id,
     name,
     slug,
     description,

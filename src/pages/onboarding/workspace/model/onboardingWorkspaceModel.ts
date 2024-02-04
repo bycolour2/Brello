@@ -5,8 +5,7 @@ import { and, delay, not, reset } from "patronum";
 import { onboardingWorkspaceCheckDone } from "~/features/onboarding";
 
 import { api } from "~/shared/api";
-import { routes } from "~/shared/routing";
-import { comebackRestore } from "~/shared/routing/comeback";
+import { comebackRestore, routes } from "~/shared/routing";
 import { $viewer, chainAuthenticated } from "~/shared/viewer";
 
 export type OnboardingWorkspaceError =

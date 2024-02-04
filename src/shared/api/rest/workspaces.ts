@@ -1,4 +1,3 @@
-import { StorageError } from "@supabase/storage-js";
 import { PostgrestError } from "@supabase/supabase-js";
 import { createEffect } from "effector";
 
@@ -104,8 +103,8 @@ export const workspaceUploadAvatarFx = createEffect<
     workspaceId: string;
     file: File;
   },
-  void,
-  PostgrestError | StorageError
+  string,
+  PostgrestError
 >(async ({ workspaceId, file }) => {
   const upload = uploadAvatar({
     filePath: `workspaces/${workspaceId}`,
@@ -123,5 +122,5 @@ export const workspaceUploadAvatarFx = createEffect<
 
   checkError(error);
 
-  return;
+  return avatarUrl;
 });

@@ -1,3 +1,4 @@
+import { StorageError } from "@supabase/storage-js";
 import { AuthError, PostgrestError } from "@supabase/supabase-js";
 
 export type Email = string;
@@ -9,7 +10,7 @@ export interface User {
 }
 
 export function checkError(
-  error: AuthError | PostgrestError | null,
+  error: AuthError | PostgrestError | StorageError | null,
 ): asserts error is null {
   if (error) {
     throw error;

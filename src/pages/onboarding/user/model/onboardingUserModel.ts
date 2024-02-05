@@ -9,8 +9,7 @@ import {
 
 import { api } from "~/shared/api";
 // import { profileExistsFx } from "~/shared/api/rest/profiles";
-import { routes } from "~/shared/routing";
-import { comebackRestore } from "~/shared/routing/comeback";
+import { comebackRestore, routes } from "~/shared/routing";
 import { $viewer, chainAuthenticated } from "~/shared/viewer";
 
 export type OnboardingUserError = "InvalidFirstName" | "UnknownError";

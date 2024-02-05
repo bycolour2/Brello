@@ -3,6 +3,7 @@ import { createEffect } from "effector";
 
 import { client } from "../client";
 import { checkError, UserId } from "./common";
+import { uploadAvatar } from "./storage";
 
 export interface Workspace {
   id: string;
@@ -49,14 +50,14 @@ export const workspaceCreateFx = createEffect<
 });
 
 export const workspaceGetFx = createEffect<
-  { userId: UserId },
+  { workspaceId: string },
   Workspace | null,
   PostgrestError
->(async ({ userId }) => {
+>(async ({ workspaceId }) => {
   const { data, error } = await client
     .from("workspaces")
     .select()
-    .eq("user_id", userId);
+    .eq("id", workspaceId);
 
   checkError(error);
 
@@ -64,11 +65,11 @@ export const workspaceGetFx = createEffect<
     return null;
   }
 
-  const { id, name, slug, description, avatar_url } = data[0];
+  const { id, name, user_id, slug, description, avatar_url } = data[0];
 
   return {
     id,
-    userId,
+    userId: user_id,
     name,
     slug,
     description,
@@ -95,4 +96,31 @@ export const workspaceUpdateFx = createEffect<
     .eq("user_id", userId);
 
   checkError(error);
+});
+
+export const workspaceUploadAvatarFx = createEffect<
+  {
+    workspaceId: string;
+    file: File;
+  },
+  string,
+  PostgrestError
+>(async ({ workspaceId, file }) => {
+  const upload = uploadAvatar({
+    filePath: `workspaces/${workspaceId}`,
+    fileOptions: {
+      upsert: true,
+      contentType: "image/*",
+    },
+  });
+  const avatarUrl = await upload({ file });
+
+  const { error } = await client
+    .from("workspaces")
+    .update({ avatar_url: avatarUrl })
+    .eq("id", workspaceId);
+
+  checkError(error);
+
+  return avatarUrl;
 });

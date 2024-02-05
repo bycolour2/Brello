@@ -15,23 +15,29 @@ const inputVariants = cva(
         sm: "min-h-[42px] px-3 py-2 text-base",
         md: "min-h-[46px] px-3.5 py-2.5 text-base",
       },
+      leadingText: {
+        true: "rounded-l-none",
+        false: "",
+      },
     },
     defaultVariants: {
-      size: "sm",
+      size: "md",
       destructive: false,
+      leadingText: false,
     },
   },
 );
 
 interface InputProps<T extends string>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
-    VariantProps<typeof inputVariants> {
+    Omit<VariantProps<typeof inputVariants>, "leadingText"> {
   className?: string;
   type?: "text" | "email" | "search";
   label?: string;
   name: T;
+  leadingText?: string;
   value: string;
-  onValue: ({ value, name }: { value: string; name: T }) => void;
+  onValue: (value: string, { name }: { name: T }) => void;
   hint?: string;
   error?: ReactNode | null;
 }
@@ -42,6 +48,7 @@ export const Input = <T extends string>({
   label,
   name,
   size,
+  leadingText,
   value,
   onValue,
   hint,
@@ -51,7 +58,7 @@ export const Input = <T extends string>({
 }: InputProps<T>) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.currentTarget;
-    onValue({ value, name: name as T });
+    onValue(value, { name: name as T });
   };
 
   const hasError = Boolean(error);
@@ -64,21 +71,29 @@ export const Input = <T extends string>({
       )}
     >
       <span className="text-sm font-medium text-gray-700">{label}</span>
-      <input
-        name={name}
-        type={type}
-        disabled={disabled}
-        aria-disabled={disabled}
-        value={value}
-        onChange={handleChange}
-        className={cn(
-          inputVariants({
-            size,
-            destructive: hasError,
-          }),
-        )}
-        {...rest}
-      />
+      <div className="inline-flex items-center self-stretch">
+        {leadingText ? (
+          <p className="max-w-[33%] overflow-hidden text-ellipsis rounded-l-lg border border-r-0 border-gray-300 py-2.5 pl-3.5 pr-3 text-base tracking-tight text-gray-600">
+            {leadingText}
+          </p>
+        ) : null}
+        <input
+          name={name}
+          type={type}
+          disabled={disabled}
+          aria-disabled={disabled}
+          value={value}
+          onChange={handleChange}
+          className={cn(
+            inputVariants({
+              size,
+              destructive: hasError,
+              leadingText: !!leadingText,
+            }),
+          )}
+          {...rest}
+        />
+      </div>
       {hasError ? (
         <span className="self-stretch text-sm text-red-500">{error}</span>
       ) : (
@@ -89,21 +104,29 @@ export const Input = <T extends string>({
     </label>
   ) : (
     <div className="flex flex-col items-start gap-1.5 self-stretch">
-      <input
-        name={name}
-        type={type}
-        disabled={disabled}
-        aria-disabled={disabled}
-        value={value}
-        onChange={handleChange}
-        className={cn(
-          inputVariants({
-            size,
-            destructive: hasError,
-          }),
-        )}
-        {...rest}
-      />
+      <div className="inline-flex items-center self-stretch">
+        {leadingText ? (
+          <p className="max-w-[33%] overflow-hidden text-ellipsis rounded-l-lg border border-r-0 border-gray-300 py-2.5 pl-3.5 pr-3 text-base tracking-tight text-gray-600 lg:max-w-none">
+            {leadingText}
+          </p>
+        ) : null}
+        <input
+          name={name}
+          type={type}
+          disabled={disabled}
+          aria-disabled={disabled}
+          value={value}
+          onChange={handleChange}
+          className={cn(
+            inputVariants({
+              size,
+              destructive: hasError,
+              leadingText: !!leadingText,
+            }),
+          )}
+          {...rest}
+        />
+      </div>
       {hasError ? (
         <span className="self-stretch text-sm text-red-500">{error}</span>
       ) : (

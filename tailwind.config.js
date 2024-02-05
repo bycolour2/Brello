@@ -13,6 +13,9 @@ export default {
       boxShadow: {
         button: "box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);",
       },
+      backdropBlur: {
+        xs: "2px",
+      },
     },
     fontFamily: {
       sans: ["Inter", ..._fontFamily.sans],

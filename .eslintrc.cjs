@@ -22,6 +22,7 @@ module.exports = {
     {
       files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
       rules: {
+        "react-refresh/only-export-components": "off",
         "simple-import-sort/imports": [
           "error",
           {

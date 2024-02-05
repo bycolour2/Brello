@@ -25,7 +25,7 @@ interface TextareaProps<T extends string>
   label?: string;
   name: T;
   value: string;
-  onValue: ({ value, name }: { value: string; name: T }) => void;
+  onValue: (value: string, { name }: { name: T }) => void;
   hint?: string;
   error?: ReactNode | null;
 }
@@ -43,7 +43,7 @@ export const Textarea = <T extends string>({
 }: TextareaProps<T>) => {
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value, name } = event.currentTarget;
-    onValue({ value, name: name as T });
+    onValue(value, { name: name as T });
   };
 
   const hasError = Boolean(error);

@@ -77,7 +77,8 @@ const LoginForm = () => {
           label="Email"
           placeholder="Enter your email"
           value={email}
-          onValue={({ value }) => handleEmail(value)}
+          size={"sm"}
+          onValue={(value) => handleEmail(value)}
           error={emailError ? errorText[emailError] : null}
           disabled={formPending}
         />

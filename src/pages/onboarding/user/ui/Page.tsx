@@ -118,7 +118,8 @@ export const OnboardingUserPage = () => {
                   label="First name"
                   placeholder="First name"
                   value={firstName}
-                  onValue={({ value }) => handleFirstNameChange(value)}
+                  size={"sm"}
+                  onValue={(value) => handleFirstNameChange(value)}
                   // error={firstNameError ? errorText[firstNameError] : null}
                   disabled={formPending}
                   className="lg:flex-[1_0_0] lg:self-start"
@@ -128,7 +129,8 @@ export const OnboardingUserPage = () => {
                   label="Last name"
                   placeholder="Last name"
                   value={lastName}
-                  onValue={({ value }) => handleLastNameChange(value)}
+                  size="sm"
+                  onValue={(value) => handleLastNameChange(value)}
                   disabled={formPending}
                   className="lg:flex-[1_0_0] lg:self-start"
                 />

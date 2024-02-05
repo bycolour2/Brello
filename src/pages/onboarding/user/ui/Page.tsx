@@ -11,11 +11,11 @@ import { routes } from "~/shared/routing";
 import { Button, FeaturedIcon, Input, Spinner } from "~/shared/ui";
 
 import {
+  $error,
   $firstName,
-  $formError,
-  $formPending,
   $lastName,
   $onboardUserFinish,
+  $pending,
   firstNameChanged,
   formSubmitted,
   lastNameChanged,
@@ -44,8 +44,8 @@ export const OnboardingUserPage = () => {
     handleLastNameChange,
     handleFormSubmit,
     formSendSuccess,
-    formPending,
-    formError,
+    pending,
+    error,
     handleSkipClick,
   ] = useUnit([
     $firstName,
@@ -54,8 +54,8 @@ export const OnboardingUserPage = () => {
     lastNameChanged,
     formSubmitted,
     $onboardUserFinish,
-    $formPending,
-    $formError,
+    $pending,
+    $error,
     skipButtonClicked,
   ]);
 
@@ -121,7 +121,7 @@ export const OnboardingUserPage = () => {
                   size={"sm"}
                   onValue={(value) => handleFirstNameChange(value)}
                   // error={firstNameError ? errorText[firstNameError] : null}
-                  disabled={formPending}
+                  disabled={pending}
                   className="lg:flex-[1_0_0] lg:self-start"
                 />
                 <Input
@@ -131,12 +131,12 @@ export const OnboardingUserPage = () => {
                   value={lastName}
                   size="sm"
                   onValue={(value) => handleLastNameChange(value)}
-                  disabled={formPending}
+                  disabled={pending}
                   className="lg:flex-[1_0_0] lg:self-start"
                 />
-                {formError ? (
+                {error ? (
                   <p className="self-stretch text-sm text-red-500">
-                    {formError ? errorText[formError] : null}
+                    {error ? errorText[error] : null}
                   </p>
                 ) : null}
               </div>
@@ -144,8 +144,8 @@ export const OnboardingUserPage = () => {
                 type="submit"
                 className="self-stretch"
                 size={"xl"}
-                disabled={formPending}
-                leadingIcon={formPending ? <Spinner /> : null}
+                disabled={pending}
+                leadingIcon={pending ? <Spinner /> : null}
               >
                 Continue
               </Button>

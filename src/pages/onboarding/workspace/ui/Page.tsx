@@ -10,8 +10,9 @@ import { Button, FeaturedIcon, Input, Spinner, Textarea } from "~/shared/ui";
 
 import {
   $description,
-  $formError,
+  $error,
   $name,
+  $pending,
   $slug,
   descriptionChanged,
   formSubmitted,
@@ -44,7 +45,8 @@ export const OnboardingWorkspacePage = () => {
     description,
     handleDescription,
     handleFormSubmit,
-    formError,
+    error,
+    pending,
   ] = useUnit([
     $name,
     nameChanged,
@@ -53,7 +55,8 @@ export const OnboardingWorkspacePage = () => {
     $description,
     descriptionChanged,
     formSubmitted,
-    $formError,
+    $error,
+    $pending,
   ]);
   return (
     <main className="relative flex h-screen flex-col items-start overflow-hidden py-16 lg:flex-[1_0_0] lg:items-center lg:justify-center lg:gap-16 lg:self-stretch lg:py-24">
@@ -86,6 +89,7 @@ export const OnboardingWorkspacePage = () => {
               placeholder="Your Company Co."
               size={"md"}
               value={name}
+              disabled={pending}
               onValue={(value) => handleName(value)}
             />
             <Input
@@ -94,6 +98,7 @@ export const OnboardingWorkspacePage = () => {
               placeholder="your-company-co"
               size={"md"}
               value={slug}
+              disabled={pending}
               onValue={(value) => handleSlug(value)}
             />
             <Textarea
@@ -101,15 +106,22 @@ export const OnboardingWorkspacePage = () => {
               label="Description"
               placeholder="Our team organizes everything here."
               value={description}
+              disabled={pending}
               onValue={(value) => handleDescription(value)}
             />
           </div>
-          {formError ? (
+          {error ? (
             <p className="self-stretch text-sm text-red-500">
-              {formError ? errorText[formError] : null}
+              {error ? errorText[error] : null}
             </p>
           ) : null}
-          <Button type="submit" size={"xl"} className="self-stretch">
+          <Button
+            type="submit"
+            size={"xl"}
+            className="self-stretch"
+            leadingIcon={pending ? <Spinner /> : null}
+            disabled={pending}
+          >
             Get started
           </Button>
         </form>

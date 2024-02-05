@@ -6,14 +6,12 @@ import {
   ChevronDown,
   ChevronUp,
   LayersTwo01,
-  Menu02,
   UserCircle,
-  XClose,
 } from "~/shared/assets/icons";
 import { cn } from "~/shared/lib/cn";
 import { $viewer } from "~/shared/viewer";
 
-import { Avatar, Button, Logo } from "..";
+import { Avatar, Button, Logo, NavMenuButton } from "..";
 
 //TODO - rewrite as compound component
 
@@ -60,17 +58,10 @@ export const Navigation = () => {
             </nav>
           </div>
 
-          <button
-            type="button"
+          <NavMenuButton
+            isOpened={isMobileNavOpen}
             onClick={handleMobileMenuToggle}
-            className="flex items-center justify-center rounded-lg bg-white p-2 hover:bg-gray-50 lg:hidden"
-          >
-            {isMobileNavOpen ? (
-              <XClose className="h-6 w-6 text-gray-500" />
-            ) : (
-              <Menu02 className="h-6 w-6 text-gray-500" />
-            )}
-          </button>
+          />
 
           <div className="hidden gap-4 lg:flex lg:items-center">
             <Avatar />

@@ -9,19 +9,19 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "shadow-button border-blue-600 bg-blue-600 stroke-white text-white hover:border-blue-700 hover:bg-blue-700 focus-visible:ring-4 focus-visible:ring-[#F4EBFF] disabled:border-blue-200 disabled:bg-blue-200",
+          "shadow-button border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700 focus-visible:ring-4 focus-visible:ring-[#F4EBFF] disabled:border-blue-200 disabled:bg-blue-200",
         "secondary-gray":
-          "shadow-button border-gray-300 bg-white stroke-gray-700 text-gray-700 hover:bg-gray-50 hover:text-gray-800 focus-visible:ring-4 focus-visible:ring-[#F2F4F7] disabled:border-blue-200 disabled:bg-white disabled:stroke-gray-300 disabled:text-gray-300",
+          "shadow-button border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:text-gray-800 focus-visible:ring-4 focus-visible:ring-[#F2F4F7] disabled:border-blue-200 disabled:bg-white disabled:text-gray-300",
         "secondary-color":
-          "border-blue-50 bg-blue-50 text-blue-700 hover:border-blue-100 hover:bg-blue-100 hover:text-blue-800 focus-visible:ring-4 focus-visible:ring-[#F4EBFF] disabled:border-[#F5F8FF] disabled:bg-[#F5F8FF] disabled:stroke-blue-300 disabled:text-blue-300",
+          "border-blue-50 bg-blue-50 text-blue-700 hover:border-blue-100 hover:bg-blue-100 hover:text-blue-800 focus-visible:ring-4 focus-visible:ring-[#F4EBFF] disabled:border-[#F5F8FF] disabled:bg-[#F5F8FF] disabled:text-blue-300",
         "tertiary-gray":
-          "border-none bg-white stroke-gray-600 text-gray-600 hover:bg-gray-50 hover:stroke-gray-700 hover:text-gray-700 disabled:stroke-gray-300 disabled:text-gray-300",
+          "border-none bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-700 disabled:text-gray-300",
         "tertiary-color":
-          "border-none bg-white stroke-blue-700 text-blue-700 hover:bg-blue-50 hover:stroke-blue-800 hover:text-blue-800 disabled:stroke-gray-300 disabled:text-gray-300",
+          "border-none bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800 disabled:text-gray-300",
         "link-gray":
-          "border-none bg-transparent stroke-gray-600 text-gray-600 hover:stroke-gray-700 hover:text-gray-700 disabled:stroke-gray-300 disabled:text-gray-300",
+          "border-none bg-transparent text-gray-600 hover:text-gray-700 disabled:text-gray-300",
         "link-color":
-          "border-none bg-transparent stroke-blue-700 text-blue-700 hover:stroke-blue-800 hover:text-blue-800 disabled:stroke-gray-300 disabled:text-gray-300",
+          "border-none bg-transparent text-blue-700 hover:text-blue-800 disabled:text-gray-300",
       },
       destructive: {
         true: "",

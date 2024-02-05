@@ -1,4 +1,6 @@
-export { Button } from "./button";
+export { Button } from "./buttons/button";
+export { GhostButton } from "./buttons/ghost-button";
+export { NavMenuButton } from "./buttons/nav-menu-button";
 export { Input } from "./input";
 export { Logo } from "./logo";
 export { Spinner } from "./spinner";

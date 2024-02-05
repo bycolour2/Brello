@@ -8,7 +8,7 @@ export const LayoutBase = ({ children }: { children: ReactNode }) => {
       <header className="inline-flex w-full flex-col items-start self-stretch">
         <Navigation />
       </header>
-      <main className="flex h-screen flex-col overflow-scroll">{children}</main>
+      <main className="flex flex-col overflow-scroll">{children}</main>
     </>
   );
 };

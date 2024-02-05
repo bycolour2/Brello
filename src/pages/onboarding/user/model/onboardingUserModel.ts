@@ -1,6 +1,6 @@
 // import { chainRoute } from "atomic-router";
 import { attach, createEvent, createStore, sample } from "effector";
-import { delay, not, reset } from "patronum";
+import { delay, not, pending, reset } from "patronum";
 
 import {
   onboardingProfileCheckDone,
@@ -60,9 +60,12 @@ export const skipButtonClicked = createEvent();
 
 export const $firstName = createStore("");
 export const $lastName = createStore("");
-export const $formPending = profileCreateFx.pending;
 export const $onboardUserFinish = createStore(false);
-export const $formError = createStore<OnboardingUserError | null>(null);
+export const $error = createStore<OnboardingUserError | null>(null);
+
+export const $pending = pending({
+  effects: [profileCreateFx],
+});
 
 const $isFirstNameValid = $firstName.map((firstName) =>
   isFirstNameValid(firstName),
@@ -80,7 +83,7 @@ sample({
 });
 
 $firstName.on(firstNameChanged, (_, firstName) => firstName);
-$formError.reset(firstNameChanged);
+$error.reset(firstNameChanged);
 
 $lastName.on(lastNameChanged, (_, lastName) => lastName);
 
@@ -88,7 +91,7 @@ sample({
   clock: formSubmitted,
   filter: not($isFirstNameValid),
   fn: (): OnboardingUserError => "InvalidFirstName",
-  target: $formError,
+  target: $error,
 });
 
 sample({
@@ -125,12 +128,12 @@ sample({
 sample({
   clock: profileCreateFx.failData,
   fn: (): OnboardingUserError => "UnknownError",
-  target: $formError,
+  target: $error,
 });
 
 reset({
   clock: currentRoute.closed,
-  target: [$firstName, $lastName, $formError, $onboardUserFinish],
+  target: [$firstName, $lastName, $error, $onboardUserFinish],
 });
 
 function isFirstNameValid(firstName: string) {

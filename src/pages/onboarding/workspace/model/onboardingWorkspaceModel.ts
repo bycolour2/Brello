@@ -1,6 +1,6 @@
 // import { chainRoute } from "atomic-router";
 import { attach, createEvent, createStore, sample } from "effector";
-import { and, delay, not, reset } from "patronum";
+import { and, delay, not, pending, reset } from "patronum";
 
 import { onboardingWorkspaceCheckDone } from "~/features/onboarding";
 
@@ -40,9 +40,12 @@ const onbordingWorkspaceFinished = createEvent();
 export const $name = createStore("");
 export const $slug = createStore("");
 export const $description = createStore("");
-export const $formPending = workspaceCreateFx.pending;
 export const $onboardingWorkspaceFinish = createStore(false);
-export const $formError = createStore<OnboardingWorkspaceError | null>(null);
+export const $error = createStore<OnboardingWorkspaceError | null>(null);
+
+export const $pending = pending({
+  effects: [workspaceCreateFx],
+});
 
 $name.on(nameChanged, (_, name) => name);
 $slug.on(slugChanged, (_, slug) => slug);
@@ -62,19 +65,19 @@ sample({
   clock: formSubmitted,
   filter: not($isNameValid),
   fn: (): OnboardingWorkspaceError => "NameInvalid",
-  target: $formError,
+  target: $error,
 });
 sample({
   clock: formSubmitted,
   filter: not($isSlugValid),
   fn: (): OnboardingWorkspaceError => "SlugInvalid",
-  target: $formError,
+  target: $error,
 });
 sample({
   clock: formSubmitted,
   filter: not($isSlugTaken),
   fn: (): OnboardingWorkspaceError => "SlugTaken",
-  target: $formError,
+  target: $error,
 });
 
 sample({
@@ -116,17 +119,17 @@ sample({
 sample({
   clock: workspaceCreateFx.failData,
   fn: (): OnboardingWorkspaceError => "UnknownError",
-  target: $formError,
+  target: $error,
 });
 
 reset({
   clock: currentRoute.closed,
-  target: [$name, $slug, $description, $formError, $onboardingWorkspaceFinish],
+  target: [$name, $slug, $description, $error, $onboardingWorkspaceFinish],
 });
 
 function isNameValid(name: string) {
   return name.length > 2 && name.length < 20;
 }
 function isSlugValid(slug: string) {
-  return slug.length > 2 && slug.length < 15 && /^[A-Za-z0-9]*$/.test(slug);
+  return slug.length > 2 && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug);
 }

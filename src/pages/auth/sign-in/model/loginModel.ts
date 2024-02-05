@@ -1,5 +1,5 @@
 import { attach, createEvent, createStore, sample } from "effector";
-import { debug, not, reset } from "patronum";
+import { not, reset } from "patronum";
 
 import { api } from "~/shared/api";
 import { routes } from "~/shared/routing";
@@ -27,8 +27,6 @@ export const $formError = createStore<SignInError | null>(null);
 const $isEmailValid = $email.map((email) => isEmailValid(email));
 
 $email.on(emailChanged, (_, email) => email);
-
-debug({ trace: true }, signInFx);
 
 sample({
   clock: formSubmited,

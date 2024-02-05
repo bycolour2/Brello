@@ -5,7 +5,7 @@ import {
   RouteParamsAndQuery,
 } from "atomic-router";
 import { createEffect, createEvent, sample } from "effector";
-import { and, debug, not, or } from "patronum";
+import { and, not, or } from "patronum";
 
 import { api } from "~/shared/api";
 import { createFlag } from "~/shared/lib/localstorage-flags";
@@ -75,8 +75,6 @@ export const onboardingProfileCheckDone = createFlag({
   initial: false,
 });
 
-debug({ trace: true }, profileExistsFx);
-
 function createProfileChecks() {
   const started = createEvent();
   const finished = createEvent();
@@ -109,7 +107,6 @@ function createProfileChecks() {
     clock: profileExistsFx.failData,
     target: [comebackSave, routes.onboarding.user.open],
   });
-  debug(profileExistsFx.failData);
 
   sample({
     clock: profileExistsFx.doneData,
@@ -120,7 +117,6 @@ function createProfileChecks() {
     clock: profileExistsFx.doneData,
     target: finished,
   });
-  debug(profileExistsFx.doneData);
 
   return {
     started,
@@ -138,7 +134,6 @@ const workspaceExistsFx = createEffect(
     return exists;
   },
 );
-debug({ trace: true }, workspaceExistsFx);
 
 export const onboardingWorkspaceCheckDone = createFlag({
   fieldName: "ws-on-cd",
@@ -174,7 +169,6 @@ function createWorkspaceChecks() {
     clock: workspaceExistsFx.failData,
     target: [comebackSave, routes.onboarding.workspace.open],
   });
-  debug(workspaceExistsFx.failData);
 
   sample({
     clock: workspaceExistsFx.doneData,
@@ -186,7 +180,6 @@ function createWorkspaceChecks() {
     clock: workspaceExistsFx.doneData,
     target: finished,
   });
-  debug(workspaceExistsFx.doneData);
 
   return {
     started,

@@ -7,7 +7,7 @@ import {
   createStore,
   sample,
 } from "effector";
-import { debug, not, pending, spread } from "patronum";
+import { not, pending, spread } from "patronum";
 
 import { api, Workspace } from "~/shared/api";
 import { readFileAsDataURL } from "~/shared/lib/file-upload";
@@ -59,8 +59,6 @@ const $slugCustom = createStore("");
 export const $name = createStore("");
 export const $description = createStore("");
 
-debug($workspace);
-
 export const $avatarFile = createStore<File | null>(null);
 export const $avatarUrl = createStore<string | null>(null);
 
@@ -82,8 +80,6 @@ export const $slug = combine(
   $slugGenerated,
   (custom, generated) => (custom.trim() === "" ? generated : custom),
 );
-
-debug(formSubmitted);
 
 const $nameValid = $name.map((name) => name.trim().length > 2);
 

@@ -8,6 +8,8 @@ export const workspaceCached = createEvent<Workspace>();
 
 export const $workspaceCache = createStore<Record<WorkspaceId, Workspace>>({});
 
+//TODO - очистка кеша от устаревших данных
+
 $workspaceCache.on(workspaceCached, (cache, workspace) => ({
   ...cache,
   [workspace.id]: workspace,

@@ -1,5 +1,5 @@
 import { chainRoute, RouteInstance, RouteParamsAndQuery } from "atomic-router";
-import { attach, createEvent, Event, sample } from "effector";
+import { attach, createEvent, Effect, Event, sample } from "effector";
 import { condition } from "patronum";
 
 import { api } from "~/shared/api";
@@ -8,8 +8,14 @@ import { $workspaceCache, workspaceCached } from "./model";
 
 type WorkspaceParams = { workspaceId: string };
 
-interface WorkspaceChainParams<Params extends WorkspaceParams> {
-  notFound?: Event<Params>;
+//REVIEW - предложенное решение, но не очень понимаю как это использовать
+// interface WorkspaceChainParams<Params extends WorkspaceParams> {
+//   notFound?: Event<Params>;
+// }
+
+interface WorkspaceChainParams {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  notFound?: Event<any> | Effect<void, any, any>;
 }
 
 const workspaceGetFx = attach({ effect: api.workspaces.workspaceGetFx });
@@ -24,7 +30,7 @@ const workspaceGetFx = attach({ effect: api.workspaces.workspaceGetFx });
 
 export function chainWorkspace<Params extends WorkspaceParams>(
   route: RouteInstance<Params>,
-  params: WorkspaceChainParams<Params> = {},
+  params: WorkspaceChainParams = {},
 ): RouteInstance<Params> {
   const workspaceCheckStarted = createEvent<RouteParamsAndQuery<Params>>();
   const workspaceInCacheFound = createEvent();
@@ -77,7 +83,8 @@ export function chainWorkspace<Params extends WorkspaceParams>(
       clock: workspaceNotExists,
       source: route.$params,
       filter: route.$isOpened,
-      target: params.notFound,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      target: params.notFound as Event<any>,
     });
   }
 

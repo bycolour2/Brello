@@ -1,4 +1,3 @@
-import { chainRoute } from "atomic-router";
 import {
   attach,
   combine,
@@ -9,9 +8,11 @@ import {
 } from "effector";
 import { not, pending, spread } from "patronum";
 
-import { api, Workspace } from "~/shared/api";
+import { chainWorkspace, workspaceById } from "~/entities/workpaces";
+
+import { api } from "~/shared/api";
 import { readFileAsDataURL } from "~/shared/lib/file-upload";
-import { comebackNavigate, routes } from "~/shared/routing";
+import { comebackNavigate, pageNotFoundRoute, routes } from "~/shared/routing";
 import { chainAuthenticated } from "~/shared/viewer";
 
 export type WorkspaceSettingsError =
@@ -31,8 +32,11 @@ export const formSubmitted = createEvent();
 const formValidated = createEvent();
 const avatarShouldBeUploaded = createEvent<File>();
 const avatarProcessingFinished = createEvent();
+const workspaceNotFound = createEvent();
 
-const workspaceGetFx = attach({ effect: api.workspaces.workspaceGetFx });
+//FIXME - Вариант без чейнера и кэша из энтити
+// const workspaceGetFx = attach({ effect: api.workspaces.workspaceGetFx });
+
 const workspaceUpdateFx = attach({ effect: api.workspaces.workspaceUpdateFx });
 const workspaceUploadAvatarFx = attach({
   effect: api.workspaces.workspaceUploadAvatarFx,
@@ -42,19 +46,45 @@ export const currentRoute = routes.workspaces.settings;
 export const authenticatedRoute = chainAuthenticated(currentRoute, {
   otherwise: comebackNavigate(routes.auth.signIn),
 });
-export const workspaceRoute = chainRoute({
-  route: authenticatedRoute,
-  beforeOpen: {
-    effect: workspaceGetFx,
-    mapParams: ({ params }) => ({ workspaceId: params.workspaceId }),
-  },
+
+export const workspaceRoute = chainWorkspace(authenticatedRoute, {
+  notFound: workspaceNotFound,
+});
+
+// Вариант без чейнера и кэша из энтити
+// export const workspaceRoute = chainRoute({
+//   route: authenticatedRoute,
+//   beforeOpen: {
+//     effect: workspaceGetFx,
+//     mapParams: ({ params }) => ({ workspaceId: params.workspaceId }),
+//   },
+// });
+
+sample({
+  clock: workspaceNotFound,
+  filter: currentRoute.$isOpened,
+  target: pageNotFoundRoute.open,
 });
 
 const previewUrlCreateFx = createEffect(async (file: File) => {
   return readFileAsDataURL(file).then((dataUrl) => dataUrl.toString());
 });
 
-const $workspace = createStore<Workspace | null>(null);
+// Вариант без чейнера и кэша из энтити
+// const $workspace = createStore<Workspace | null>(null);
+
+const $workspace = workspaceById(
+  workspaceRoute.$params.map(({ workspaceId }) => workspaceId),
+);
+
+// Вариант без чейнера и кэша из энтити
+// sample({
+//   clock: workspaceRoute.opened,
+//   source: $workspaceCache,
+//   fn: (cache, { params: { workspaceId } }) => cache[workspaceId],
+//   target: $workspace,
+// });
+
 const $slugCustom = createStore("");
 export const $name = createStore("");
 export const $description = createStore("");
@@ -69,7 +99,7 @@ export const $pending = pending({
     previewUrlCreateFx,
     workspaceUploadAvatarFx,
     workspaceUpdateFx,
-    workspaceGetFx,
+    // workspaceGetFx,
   ],
 });
 
@@ -90,11 +120,12 @@ const $form = combine({
   description: $description,
 });
 
-sample({
-  clock: workspaceGetFx.doneData,
-  filter: Boolean,
-  target: [$error.reinit, $workspace],
-});
+// Вариант без чейнера и кэша из энтити
+// sample({
+//   clock: workspaceGetFx.doneData,
+//   filter: Boolean,
+//   target: [$error.reinit, $workspace],
+// });
 
 spread({
   source: $workspace,
@@ -106,21 +137,22 @@ spread({
   },
 });
 
-sample({
-  clock: workspaceGetFx.doneData,
-  filter: (workspce) => !workspce,
-  fn: (): WorkspaceSettingsError => "NotFound",
-  target: $error,
-});
-
-sample({
-  clock: workspaceGetFx.failData,
-  fn: (error): WorkspaceSettingsError => {
-    if (error.code === "PGRST116") return "NotFound";
-    return "UnknownError";
-  },
-  target: $error,
-});
+// Вариант без чейнера и кэша из энтити
+// sample({
+//   clock: workspaceGetFx.doneData,
+//   filter: (workspce) => !workspce,
+//   fn: (): WorkspaceSettingsError => "NotFound",
+//   target: $error,
+// });
+//
+// sample({
+//   clock: workspaceGetFx.failData,
+//   fn: (error): WorkspaceSettingsError => {
+//     if (error.code === "PGRST116") return "NotFound";
+//     return "UnknownError";
+//   },
+//   target: $error,
+// });
 
 sample({
   clock: avatarFileSelected,

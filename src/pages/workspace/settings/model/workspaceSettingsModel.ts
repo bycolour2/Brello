@@ -94,14 +94,12 @@ export const $avatarUrl = createStore<string | null>(null);
 
 export const $error = createStore<WorkspaceSettingsError | null>(null);
 
-export const $pending = pending({
-  effects: [
-    previewUrlCreateFx,
-    workspaceUploadAvatarFx,
-    workspaceUpdateFx,
-    // workspaceGetFx,
-  ],
-});
+export const $pending = pending([
+  previewUrlCreateFx,
+  workspaceUploadAvatarFx,
+  workspaceUpdateFx,
+  // workspaceGetFx,
+]);
 
 const $slugGenerated = $name.map((name) => slugify(name, { lower: true }));
 

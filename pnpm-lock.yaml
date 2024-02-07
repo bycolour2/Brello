@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@effector/reflect':
-    specifier: 8.4.0
-    version: 8.4.0(effector-react@22.5.4)(effector@22.8.8)(react@18.2.0)
+    specifier: 9.1.1
+    version: 9.1.1(effector-react@23.2.0)(effector@23.2.0)(react@18.2.0)
   '@supabase/storage-js':
     specifier: ^2.5.5
     version: 2.5.5
@@ -15,11 +15,11 @@ dependencies:
     specifier: ^2.39.3
     version: 2.39.3
   atomic-router:
-    specifier: ^0.9.4
-    version: 0.9.4(effector@22.8.8)(history@5.3.0)
+    specifier: 0.10.0
+    version: 0.10.0(effector@23.2.0)(history@5.3.0)
   atomic-router-react:
-    specifier: ^0.9.1
-    version: 0.9.1(atomic-router@0.9.4)(effector-react@22.5.4)(effector@22.8.8)(react@18.2.0)
+    specifier: 0.9.1
+    version: 0.9.1(atomic-router@0.10.0)(effector-react@23.2.0)(effector@23.2.0)(react@18.2.0)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -27,20 +27,20 @@ dependencies:
     specifier: ^2.1.0
     version: 2.1.0
   effector:
-    specifier: ^22.8.8
-    version: 22.8.8
+    specifier: 23.2.0
+    version: 23.2.0
   effector-react:
-    specifier: ^22.5.4
-    version: 22.5.4(effector@22.8.8)(react@18.2.0)
+    specifier: 23.2.0
+    version: 23.2.0(effector@23.2.0)(react@18.2.0)
   effector-storage:
-    specifier: ^7.0.0
-    version: 7.0.0(effector@22.8.8)
+    specifier: 7.0.0
+    version: 7.0.0(effector@23.2.0)
   history:
-    specifier: ^5.3.0
+    specifier: 5.3.0
     version: 5.3.0
   patronum:
-    specifier: ^1.18.0
-    version: 1.18.0(effector@22.8.8)
+    specifier: 2.2.0
+    version: 2.2.0(effector@23.2.0)
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -48,8 +48,8 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   tailwind-merge:
-    specifier: ^2.2.0
-    version: 2.2.0
+    specifier: ^2.2.1
+    version: 2.2.1
 
 devDependencies:
   '@types/node':
@@ -331,6 +331,13 @@ packages:
     dependencies:
       regenerator-runtime: 0.14.1
 
+  /@babel/runtime@7.23.9:
+    resolution: {integrity: sha512-0CX6F+BI2s9dkUqr08KFrAIZgNFj75rdBU/DjCyYLIaV/quFjkk6T+EJ2LkZHyZTbEV4L5p97mNkUsHl2wLFAw==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.14.1
+    dev: false
+
   /@babel/template@7.22.15:
     resolution: {integrity: sha512-QPErUVm4uyJa60rkI73qneDacvdvzxshT3kksGqlGWYdOTIUOwJ7RDUL8sGqslY1uXWSL6xMFKEXDS3ox2uF0w==}
     engines: {node: '>=6.9.0'}
@@ -367,15 +374,15 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@effector/reflect@8.4.0(effector-react@22.5.4)(effector@22.8.8)(react@18.2.0):
-    resolution: {integrity: sha512-MgzE9tum97JgO6ITq2Wcd42nYaInqpsrX7inRmY25Rp53YYu9ChBUMTCM/NHvc7qhFRC0PzsSCi0fkdRsjlz0g==}
+  /@effector/reflect@9.1.1(effector-react@23.2.0)(effector@23.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-ai43qnYOi7YhP5F2xzvhqe2ByNBzFV1hEiPyXGRaWgSxaza24q3wrH1CNmDOSquJ5cB7u/7XNAHhhjI18AXIFg==}
     peerDependencies:
-      effector: ^22.0.0 || ^23.0.0
-      effector-react: ^22.1.0 || ^23.0.0
+      effector: ^23.1.0
+      effector-react: ^23.1.0
       react: '>=16.8.0 <19.0.0'
     dependencies:
-      effector: 22.8.8
-      effector-react: 22.5.4(effector@22.8.8)(react@18.2.0)
+      effector: 23.2.0
+      effector-react: 23.2.0(effector@23.2.0)(react@18.2.0)
       react: 18.2.0
     dev: false
 
@@ -1410,7 +1417,7 @@ packages:
       has-symbols: 1.0.3
     dev: true
 
-  /atomic-router-react@0.9.1(atomic-router@0.9.4)(effector-react@22.5.4)(effector@22.8.8)(react@18.2.0):
+  /atomic-router-react@0.9.1(atomic-router@0.10.0)(effector-react@23.2.0)(effector@23.2.0)(react@18.2.0):
     resolution: {integrity: sha512-22oJu2LUG8Z4HXmrlrSOFzUtna6iC3tYOT93/IRKq+Kqz6MuQmnvbcTlHOZ55c59WEJEng80nj8Dewa8ncSf4g==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -1419,21 +1426,21 @@ packages:
       effector-react: ^22.1.0 || ^23
       react: ^17 || ^18
     dependencies:
-      atomic-router: 0.9.4(effector@22.8.8)(history@5.3.0)
+      atomic-router: 0.10.0(effector@23.2.0)(history@5.3.0)
       clsx: 1.2.1
-      effector: 22.8.8
-      effector-react: 22.5.4(effector@22.8.8)(react@18.2.0)
+      effector: 23.2.0
+      effector-react: 23.2.0(effector@23.2.0)(react@18.2.0)
       react: 18.2.0
     dev: false
 
-  /atomic-router@0.9.4(effector@22.8.8)(history@5.3.0):
-    resolution: {integrity: sha512-5r6h/y76i9KKjqURU3dmpMqjvt1FBfI+7BIfMNp5R6LABlLQilm7UouDN0IwXeF0oifKZcjIM1gsyDJoAbIl8A==}
+  /atomic-router@0.10.0(effector@23.2.0)(history@5.3.0):
+    resolution: {integrity: sha512-A2WQOQjylfHCbeLnDmeNL3RwSfvmxqOqH6yuOewaPKPS26ITZGaJVYO9m4tN7t4tmoKCiaSS/+Bx2iQZIyO02A==}
     engines: {node: '>=10'}
     peerDependencies:
       effector: ^22.8.8 || ^23
       history: ^5.3.0
     dependencies:
-      effector: 22.8.8
+      effector: 23.2.0
       history: 5.3.0
       path-to-regexp: 6.2.1
     dev: false
@@ -1771,28 +1778,28 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
 
-  /effector-react@22.5.4(effector@22.8.8)(react@18.2.0):
-    resolution: {integrity: sha512-7HmtfD/vqmqvGnu6jMojmns9cxIW45JPBkGgHrwvbXGpbm0bz2fmVj6PIttv+Bamfmrf9FAy2bZhs+Rwj+3Mxw==}
+  /effector-react@23.2.0(effector@23.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-e7tWJ+lpVKJpzS0UDR2Oi/0dAfvyDYyT44CWIFzBd8aJ7u4VXqP/3RJ4GCa3sH2g8Wffx6IA3BuTUGvgeH8ypg==}
     engines: {node: '>=11.0.0'}
     peerDependencies:
-      effector: ^22.0.2
+      effector: ^23.0.0
       react: '>=16.8.0 <19.0.0'
     dependencies:
-      effector: 22.8.8
+      effector: 23.2.0
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  /effector-storage@7.0.0(effector@22.8.8):
+  /effector-storage@7.0.0(effector@23.2.0):
     resolution: {integrity: sha512-iTwpZotNaEesliP/3jSE5eXGajBSci0Q7oCaTfgenNAwnZBrudwwifTxKU9+eI08QRh78AyS+Z6UfHX3aD+zOg==}
     peerDependencies:
       effector: ^22.4.0 || ^23.0.0
     dependencies:
-      effector: 22.8.8
+      effector: 23.2.0
     dev: false
 
-  /effector@22.8.8:
-    resolution: {integrity: sha512-uqYEPt/jIZ3Y1WhpyED1XuXAJNsVM5TcWZvcyQhl6nYKRynklGiu+Fy/BnLQftmMcxZS478laAuExUPfuOGiOg==}
+  /effector@23.2.0:
+    resolution: {integrity: sha512-TqR/e5BSfAk4ZkHOykmqPmT9Nn4fLE/BhuBiVmy2cb7Vp6in8N+xMDFhWWZAgOdQjehgt/dIVQyXuWpXh3EoZA==}
     engines: {node: '>=11.0.0'}
     dev: false
 
@@ -3154,12 +3161,12 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /patronum@1.18.0(effector@22.8.8):
-    resolution: {integrity: sha512-2SxZTLHXw56dXvns41YksVD030shnewef+4Gak2RSYdgEBGdCKCYYNfegsvoW8MWwjQxUZpp1Mgos8a3pXipCQ==}
+  /patronum@2.2.0(effector@23.2.0):
+    resolution: {integrity: sha512-Idsb5swd+2UI1NuBlHJuVA4WlaUeEluZJxGAZ9obCViuEf4pP68bij3f1sZCM/vqqWPsbHclYweDNt/sWu0O1g==}
     peerDependencies:
-      effector: ^22.1.2
+      effector: ^23
     dependencies:
-      effector: 22.8.8
+      effector: 23.2.0
     dev: false
 
   /picocolors@1.0.0:
@@ -3741,10 +3748,10 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /tailwind-merge@2.2.0:
-    resolution: {integrity: sha512-SqqhhaL0T06SW59+JVNfAqKdqLs0497esifRrZ7jOaefP3o64fdFNDMrAQWZFMxTLJPiHVjRLUywT8uFz1xNWQ==}
+  /tailwind-merge@2.2.1:
+    resolution: {integrity: sha512-o+2GTLkthfa5YUt4JxPfzMIpQzZ3adD1vLVkvKE1Twl9UAhGsEbIZhHHZVRttyW177S8PDJI3bTQNaebyofK3Q==}
     dependencies:
-      '@babel/runtime': 7.23.7
+      '@babel/runtime': 7.23.9
     dev: false
 
   /tailwindcss@3.4.1:

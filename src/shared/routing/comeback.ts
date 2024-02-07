@@ -1,5 +1,5 @@
 import { HistoryPushParams, RouteInstance } from "atomic-router";
-import { createEffect, createEvent, Event, sample } from "effector";
+import { createEffect, createEvent, EventCallable, sample } from "effector";
 
 import { router, routes } from ".";
 
@@ -31,7 +31,9 @@ const urlCleanFx = createEffect(() => {
   globalThis.localStorage.removeItem(COMEBACK_KEY);
 });
 
-export function comebackNavigate(route: RouteInstance<object>): Event<void> {
+export function comebackNavigate(
+  route: RouteInstance<object>,
+): EventCallable<void> {
   const comebackNavigate = createEvent();
 
   sample({

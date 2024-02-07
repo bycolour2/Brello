@@ -77,6 +77,34 @@ export const workspaceGetFx = createEffect<
   };
 });
 
+export const workspaceGetForUserFx = createEffect<
+  { userId: string },
+  Workspace | null,
+  PostgrestError
+>(async ({ userId }) => {
+  const { data, error } = await client
+    .from("workspaces")
+    .select()
+    .eq("user_id", userId);
+
+  checkError(error);
+
+  if (data === null) {
+    return null;
+  }
+
+  const { id, name, user_id, slug, description, avatar_url } = data[0];
+
+  return {
+    id,
+    userId: user_id,
+    name,
+    slug,
+    description,
+    avatarUrl: avatar_url,
+  };
+});
+
 export const workspaceUpdateFx = createEffect<
   { workspace: Workspace },
   void,

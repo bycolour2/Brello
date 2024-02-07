@@ -5,12 +5,18 @@ import { LayoutBase } from "~/layouts/base";
 import {
   authenticatedRoute,
   currentRoute,
+  workspaceRoute,
 } from "./model/workspaceSettingsModel";
 import { WorkspaceSettingsPage } from "./ui/Page";
 
+const WorkspaceSettingsView = createRouteView<unknown, object, object>({
+  route: workspaceRoute,
+  view: WorkspaceSettingsPage,
+});
+
 const AuthenticatedView = createRouteView<unknown, object, object>({
   route: authenticatedRoute,
-  view: WorkspaceSettingsPage,
+  view: WorkspaceSettingsView,
 });
 
 const WorkspaceSettings = {

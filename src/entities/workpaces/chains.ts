@@ -1,5 +1,5 @@
 import { chainRoute, RouteInstance, RouteParamsAndQuery } from "atomic-router";
-import { attach, createEvent, Effect, Event, sample } from "effector";
+import { attach, createEvent, Effect, EventCallable, sample } from "effector";
 import { condition } from "patronum";
 
 import { api } from "~/shared/api";
@@ -15,7 +15,7 @@ type WorkspaceParams = { workspaceId: string };
 
 interface WorkspaceChainParams {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  notFound?: Event<any> | Effect<void, any, any>;
+  notFound?: EventCallable<any> | Effect<void, any, any>;
 }
 
 const workspaceGetFx = attach({ effect: api.workspaces.workspaceGetFx });
@@ -84,7 +84,7 @@ export function chainWorkspace<Params extends WorkspaceParams>(
       source: route.$params,
       filter: route.$isOpened,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      target: params.notFound as Event<any>,
+      target: params.notFound as EventCallable<any>,
     });
   }
 

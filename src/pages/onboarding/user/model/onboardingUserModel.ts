@@ -63,9 +63,7 @@ export const $lastName = createStore("");
 export const $onboardUserFinish = createStore(false);
 export const $error = createStore<OnboardingUserError | null>(null);
 
-export const $pending = pending({
-  effects: [profileCreateFx],
-});
+export const $pending = pending([profileCreateFx]);
 
 const $isFirstNameValid = $firstName.map((firstName) =>
   isFirstNameValid(firstName),
@@ -115,10 +113,7 @@ sample({
   target: $onboardUserFinish,
 });
 
-const delayedOnbordingFinished = delay({
-  source: onbordingUserFinished,
-  timeout: 2000,
-});
+const delayedOnbordingFinished = delay(onbordingUserFinished, 2000);
 
 sample({
   clock: delayedOnbordingFinished,

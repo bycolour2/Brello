@@ -43,9 +43,7 @@ export const $description = createStore("");
 export const $onboardingWorkspaceFinish = createStore(false);
 export const $error = createStore<OnboardingWorkspaceError | null>(null);
 
-export const $pending = pending({
-  effects: [workspaceCreateFx],
-});
+export const $pending = pending([workspaceCreateFx]);
 
 $name.on(nameChanged, (_, name) => name);
 $slug.on(slugChanged, (_, slug) => slug);
@@ -106,10 +104,7 @@ sample({
   target: $onboardingWorkspaceFinish,
 });
 
-const delayedOnbordingFinished = delay({
-  source: onbordingWorkspaceFinished,
-  timeout: 2000,
-});
+const delayedOnbordingFinished = delay(onbordingWorkspaceFinished, 2000);
 
 sample({
   clock: delayedOnbordingFinished,

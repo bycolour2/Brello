@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "~/shared/lib/cn";
 
-const featuredIconVariants = cva("", {
+const featuredIconVariants = cva("flex items-center justify-center", {
   variants: {
     color: {
       primary: "border-blue-50 bg-blue-100",

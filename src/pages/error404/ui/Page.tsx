@@ -1,6 +1,6 @@
 import { useUnit } from "effector-react";
 
-import { IconArrowLeft } from "~/shared/assets/icons";
+import { ArrowLeft } from "~/shared/assets/icons";
 import { Button } from "~/shared/ui";
 
 import {
@@ -44,7 +44,7 @@ export const Error404Page = () => {
               <Button
                 size={"xl"}
                 variant={"secondary-gray"}
-                leadingIcon={<IconArrowLeft />}
+                leadingIcon={<ArrowLeft />}
                 onClick={() => handleGoBack()}
                 className="self-stretch lg:self-auto"
               >

@@ -1,4 +1,3 @@
-// import { chainRoute } from "atomic-router";
 import { attach, createEvent, createStore, sample } from "effector";
 import { and, delay, not, pending, reset } from "patronum";
 
@@ -14,22 +13,12 @@ export type OnboardingWorkspaceError =
   | "SlugTaken"
   | "UnknownError";
 
-// const workspaceExistsFx = attach({
-//   source: $viewer,
-//   async effect(viewer) {
-//     return api.workspaces.workspaceExistsFx({ userId: viewer!.id });
-//   },
-// });
 const workspaceCreateFx = attach({ effect: api.workspaces.workspaceCreateFx });
 
 export const currentRoute = routes.onboarding.workspace;
 export const authenticatedRoute = chainAuthenticated(currentRoute, {
   otherwise: routes.auth.signIn.open,
 });
-// export const workspaceLoadedRoute = chainRoute({
-//   route: authenticatedRoute,
-//   beforeOpen: { effect: workspaceExistsFx, mapParams: () => ({}) },
-// });
 
 export const nameChanged = createEvent<string>();
 export const slugChanged = createEvent<string>();

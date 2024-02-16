@@ -18,7 +18,7 @@ import {
   SignInError,
 } from "../model/loginModel";
 
-export const PageLoader = () => {
+export const AuthnPageLoader = () => {
   return (
     <LayoutAuthn>
       <Spinner className="h-20 w-20 text-blue-600" />

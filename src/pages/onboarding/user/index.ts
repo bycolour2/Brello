@@ -1,17 +1,9 @@
 import { createRouteView } from "atomic-router-react";
 
-import {
-  authenticatedRoute,
-  currentRoute,
-  // profileLoadRoute,
-} from "./model/onboardingUserModel";
-import { OnboardingUserPage, PageLoader } from "./ui/Page";
+import { PageLoader } from "~/shared/ui";
 
-// const ProfileLoadView = createRouteView({
-//   route: profileLoadRoute,
-//   view: OnboardingUserPage,
-//   otherwise: PageLoader,
-// });
+import { authenticatedRoute, currentRoute } from "./model/onboardingUserModel";
+import { OnboardingUserPage } from "./ui/Page";
 
 const AuthenticationView = createRouteView<unknown, object, object>({
   route: authenticatedRoute,

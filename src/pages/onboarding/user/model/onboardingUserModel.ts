@@ -1,4 +1,3 @@
-// import { chainRoute } from "atomic-router";
 import { attach, createEvent, createStore, sample } from "effector";
 import { delay, not, pending, reset } from "patronum";
 
@@ -8,18 +7,11 @@ import {
 } from "~/features/onboarding";
 
 import { api } from "~/shared/api";
-// import { profileExistsFx } from "~/shared/api/rest/profiles";
 import { comebackRestore, routes } from "~/shared/routing";
 import { $viewer, chainAuthenticated } from "~/shared/viewer";
 
 export type OnboardingUserError = "InvalidFirstName" | "UnknownError";
 
-// const profileExistFx = attach({
-//   source: $viewer,
-//   async effect(viewer) {
-//     return api.profiles.profileExistsFx({ userId: viewer!.id });
-//   },
-// });
 const profileCreateFx = attach({ effect: api.profiles.profileCreateFx });
 
 export const currentRoute = routes.onboarding.user;
@@ -27,14 +19,6 @@ export const currentRoute = routes.onboarding.user;
 export const authenticatedRoute = chainAuthenticated(currentRoute, {
   otherwise: routes.auth.signIn.open,
 });
-
-// export const profileLoadRoute = chainRoute({
-//   route: authenticatedRoute,
-//   beforeOpen: {
-//     effect: profileExistFx,
-//     mapParams: () => ({}),
-//   },
-// });
 
 /**
  * 1. Проверка авторизации //*

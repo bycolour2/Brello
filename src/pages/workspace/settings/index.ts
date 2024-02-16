@@ -2,6 +2,8 @@ import { createRouteView } from "atomic-router-react";
 
 import { LayoutBase } from "~/layouts/base";
 
+import { PageLoader } from "~/shared/ui";
+
 import {
   authenticatedRoute,
   currentRoute,
@@ -12,11 +14,13 @@ import { WorkspaceSettingsPage } from "./ui/Page";
 const WorkspaceLoadedView = createRouteView<unknown, object, object>({
   route: workspaceRoute,
   view: WorkspaceSettingsPage,
+  otherwise: PageLoader,
 });
 
 const AuthenticatedView = createRouteView<unknown, object, object>({
   route: authenticatedRoute,
   view: WorkspaceLoadedView,
+  otherwise: PageLoader,
 });
 
 const WorkspaceSettings = {

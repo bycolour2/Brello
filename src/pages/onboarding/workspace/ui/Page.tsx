@@ -21,14 +21,6 @@ import {
   slugChanged,
 } from "../model/onboardingWorkspaceModel";
 
-export const PageLoader = () => {
-  return (
-    <div className="flex h-screen flex-col items-center justify-center">
-      <Spinner className="h-20 w-20 text-blue-600" />
-    </div>
-  );
-};
-
 const errorText: { [Key in OnboardingWorkspaceError]: ReactNode } = {
   NameInvalid: "Must be valid name.",
   SlugInvalid: "Must be valid slug.",

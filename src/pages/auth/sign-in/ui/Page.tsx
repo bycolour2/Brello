@@ -3,11 +3,7 @@ import { useUnit } from "effector-react";
 
 import { LayoutAuthn } from "~/layouts/authn";
 
-import {
-  IconAlertCircle,
-  IconArrowLeft,
-  IconMail01,
-} from "~/shared/assets/icons";
+import { AlertCircle, ArrowLeft, Mail01 } from "~/shared/assets/icons";
 import { Button, FeaturedIcon, Input, Spinner } from "~/shared/ui";
 
 import {
@@ -22,7 +18,7 @@ import {
   SignInError,
 } from "../model/loginModel";
 
-export const PageLoader = () => {
+export const AuthnPageLoader = () => {
   return (
     <LayoutAuthn>
       <Spinner className="h-20 w-20 text-blue-600" />
@@ -121,9 +117,9 @@ const LoginResult = () => {
         <FeaturedIcon
           icon={
             authError ? (
-              <IconAlertCircle className="text-red-600" />
+              <AlertCircle className="text-red-600" />
             ) : (
-              <IconMail01 className="text-blue-600" />
+              <Mail01 className="text-blue-600" />
             )
           }
           color={authError ? "error" : "primary"}
@@ -145,7 +141,7 @@ const LoginResult = () => {
       <Button
         className="self-start"
         variant={"link-gray"}
-        leadingIcon={<IconArrowLeft />}
+        leadingIcon={<ArrowLeft />}
         onClick={() => handleBackToLogin()}
       >
         {authError ? "Try again" : "Back to log in"}

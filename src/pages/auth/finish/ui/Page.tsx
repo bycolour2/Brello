@@ -2,11 +2,7 @@ import { useUnit } from "effector-react";
 
 import { LayoutAuthn } from "~/layouts/authn";
 
-import {
-  IconAlertCircle,
-  IconArrowLeft,
-  IconMail01,
-} from "~/shared/assets/icons";
+import { AlertCircle, ArrowLeft, Mail01 } from "~/shared/assets/icons";
 import { Button, FeaturedIcon, Spinner } from "~/shared/ui";
 
 import {
@@ -56,7 +52,7 @@ const LoginSuccess = () => {
     <>
       <div className="flex flex-col items-start gap-6 self-stretch">
         <FeaturedIcon
-          icon={<IconMail01 className="text-blue-600" />}
+          icon={<Mail01 className="text-blue-600" />}
           color={"primary"}
           size={"xl"}
           theme={"light-circle-outline"}
@@ -86,7 +82,7 @@ const LoginError = () => {
     <>
       <div className="flex flex-col items-start gap-6 self-stretch">
         <FeaturedIcon
-          icon={<IconAlertCircle className="text-red-600" />}
+          icon={<AlertCircle className="text-red-600" />}
           color={"error"}
           size={"xl"}
           theme={"light-circle-outline"}
@@ -104,7 +100,7 @@ const LoginError = () => {
       <Button
         className="self-start"
         variant={"link-gray"}
-        leadingIcon={<IconArrowLeft />}
+        leadingIcon={<ArrowLeft />}
         onClick={() => handleTryAgain()}
       >
         Try again

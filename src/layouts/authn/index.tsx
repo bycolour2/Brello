@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { IconMail01 } from "~/shared/assets/icons";
+import { Mail01 } from "~/shared/assets/icons";
 import { Logo } from "~/shared/ui";
 
 type LayoutAuthnProps = {
@@ -21,7 +21,7 @@ export const LayoutAuthn = ({ children }: LayoutAuthnProps) => {
         <footer className="hidden lg:flex lg:h-24 lg:items-end lg:justify-between lg:self-stretch lg:p-9">
           <p className="text-sm text-gray-600">© Brello 2023</p>
           <p className="flex items-center gap-2 text-sm text-gray-600">
-            <IconMail01 className="h-4 w-4 stroke-gray-600" />
+            <Mail01 className="h-4 w-4 stroke-gray-600" />
             help@brello.io
           </p>
         </footer>

@@ -41,7 +41,7 @@ export const Navigation = () => {
   return (
     <>
       <div className="z-10 flex h-[64px] flex-col items-center self-stretch border-b border-gray-200 shadow-sm lg:h-[72px]">
-        <div className=" flex flex-[1_0_0] items-center justify-between self-stretch bg-white py-3 pl-4 pr-2 lg:mx-auto lg:w-[1280px]">
+        <div className="flex flex-[1_0_0] items-center justify-between self-stretch bg-white py-3 pl-4 pr-2 lg:mx-auto lg:w-[1280px] lg:px-8">
           <div className="flex items-center gap-4">
             <Logo />
             <nav className="hidden lg:block">
@@ -61,6 +61,7 @@ export const Navigation = () => {
           <NavMenuButton
             isOpened={isMobileNavOpen}
             onClick={handleMobileMenuToggle}
+            className="lg:hidden"
           />
 
           <div className="hidden gap-4 lg:flex lg:items-center">

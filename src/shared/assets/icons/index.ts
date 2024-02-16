@@ -1,22 +1,27 @@
-import IconAlertCircle from "./alert-circle.svg?react";
-import IconArrowLeft from "./arrow-left.svg?react";
+import AlertCircle from "./alert-circle.svg?react";
+import ArrowLeft from "./arrow-left.svg?react";
 import Checkmark from "./checkmark.svg?react";
 import ChevronDown from "./chevron-down.svg?react";
 import ChevronUp from "./chevron-up.svg?react";
 import FolderShield from "./folder-shield.svg?react";
-import IconGoogleSocial from "./google-social-icon.svg?react";
+import GoogleSocial from "./google-social-icon.svg?react";
 import LayersTwo01 from "./layers-two-01.svg?react";
-import IconMail01 from "./mail-01.svg?react";
+import Mail01 from "./mail-01.svg?react";
 import Menu02 from "./menu-02.svg?react";
+import Plus from "./plus.svg?react";
+import PlusCircle from "./plus-circle.svg?react";
+import SearchLg from "./search-lg.svg?react";
+import Settings02 from "./settings-02.svg?react";
 import User01 from "./user-01.svg?react";
 import UserCircle from "./user-circle.svg?react";
+import UsersPlus from "./users-plus.svg?react";
 import XClose from "./x-close.svg?react";
 
 export {
-  IconMail01,
-  IconGoogleSocial,
-  IconArrowLeft,
-  IconAlertCircle,
+  Mail01,
+  GoogleSocial,
+  ArrowLeft,
+  AlertCircle,
   User01,
   Checkmark,
   FolderShield,
@@ -26,4 +31,9 @@ export {
   ChevronDown,
   ChevronUp,
   XClose,
+  Settings02,
+  UsersPlus,
+  Plus,
+  PlusCircle,
+  SearchLg,
 };

@@ -1,16 +1,12 @@
 import { createRouteView } from "atomic-router-react";
 
+import { PageLoader } from "~/shared/ui";
+
 import {
   authenticatedRoute,
   currentRoute,
 } from "./model/onboardingWorkspaceModel";
-import { OnboardingWorkspacePage, PageLoader } from "./ui/Page";
-
-// const WorkspaceLoadView = createRouteView({
-//   route: authenticatedRoute,
-//   view: OnboardingWorkspacePage,
-//   otherwise: PageLoader,
-// });
+import { OnboardingWorkspacePage } from "./ui/Page";
 
 const AuthenticationView = createRouteView<unknown, object, object>({
   route: authenticatedRoute,

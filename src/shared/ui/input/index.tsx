@@ -103,7 +103,12 @@ export const Input = <T extends string>({
       )}
     </label>
   ) : (
-    <div className="flex flex-col items-start gap-1.5 self-stretch">
+    <div
+      className={cn(
+        "flex flex-col items-start gap-1.5 self-stretch",
+        className,
+      )}
+    >
       <div className="inline-flex items-center self-stretch">
         {leadingText ? (
           <p className="max-w-[33%] overflow-hidden text-ellipsis rounded-l-lg border border-r-0 border-gray-300 py-2.5 pl-3.5 pr-3 text-base tracking-tight text-gray-600 lg:max-w-none">

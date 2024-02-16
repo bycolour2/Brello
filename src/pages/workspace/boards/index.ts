@@ -8,12 +8,12 @@ import {
   authenticatedRoute,
   currentRoute,
   workspaceRoute,
-} from "./model/workspaceSettingsModel";
-import { WorkspaceSettingsPage } from "./ui/Page";
+} from "./model/workspaceBoardsModel";
+import { BoardsPage } from "./ui/Page";
 
 const WorkspaceLoadedView = createRouteView<unknown, object, object>({
   route: workspaceRoute,
-  view: WorkspaceSettingsPage,
+  view: BoardsPage,
   otherwise: PageLoader,
 });
 

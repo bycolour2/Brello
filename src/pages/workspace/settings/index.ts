@@ -9,14 +9,14 @@ import {
 } from "./model/workspaceSettingsModel";
 import { WorkspaceSettingsPage } from "./ui/Page";
 
-const WorkspaceSettingsView = createRouteView<unknown, object, object>({
+const WorkspaceLoadedView = createRouteView<unknown, object, object>({
   route: workspaceRoute,
   view: WorkspaceSettingsPage,
 });
 
 const AuthenticatedView = createRouteView<unknown, object, object>({
   route: authenticatedRoute,
-  view: WorkspaceSettingsView,
+  view: WorkspaceLoadedView,
 });
 
 const WorkspaceSettings = {

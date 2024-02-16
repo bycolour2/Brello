@@ -74,7 +74,7 @@ const previewUrlCreateFx = createEffect(async (file: File) => {
 // const $workspace = createStore<Workspace | null>(null);
 
 const $workspace = workspaceById(
-  workspaceRoute.$params.map(({ workspaceId }) => workspaceId),
+  workspaceRoute.$params.map(({ workspaceId }) => workspaceId ?? "<id>"),
 );
 
 // Вариант без чейнера и кэша из энтити

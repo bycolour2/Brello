@@ -25,8 +25,17 @@ supabase.stop:
 supabase.migrations.pull:
 	pnpm supabase db pull
 
+supabase.migrations.push:
+	pnpm supabase db push
+
 supabase.migrations.diff.local:
 	pnpm supabase db diff -f $(name) --local
 
 supabase.generate.types:
 	pnpm supabase gen types typescript --local > ./src/shared/api/database.types.ts
+
+supabase.functions.serve:
+	pnpm supabase functions serve --env-file ./supabase/.env.local
+
+supabase.secrets.push:
+	pnpm supabase secrets set --env-file ./supabase/.env.local --project-ref $(project)
